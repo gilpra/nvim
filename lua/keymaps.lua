@@ -11,3 +11,7 @@ map({ "n", "v" }, "W", "$", { desc = "End of line" })
 -- Coment
 map("n", "<leader>/", "gcc", { remap = true })
 map("v", "<leader>/", "gc", { remap = true })
+
+-- nvimtree
+map("n", "<C-n>", "<cmd> NvimTreeToggle <CR>")
+map("n", "<C-h>", "<cmd> NvimTreeFocus <CR>")

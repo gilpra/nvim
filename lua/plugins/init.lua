@@ -9,4 +9,10 @@ return {
 			return require("plugins.configs.lualine")
 		end,
 	},
+
+  {
+		"nvim-tree/nvim-tree.lua",
+		cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+		opts = {},
+	},
 }
