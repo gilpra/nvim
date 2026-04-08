@@ -21,4 +21,12 @@ return {
 		cmd = "Telescope",
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
+
+  {
+		"akinsho/bufferline.nvim",
+		event = "BufReadPre",
+		opts = function()
+			return require("plugins.configs.bufferline")
+		end,
+	},
 }

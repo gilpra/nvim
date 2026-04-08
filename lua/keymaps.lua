@@ -21,3 +21,8 @@ map("n", "<leader>ff", "<cmd> Telescope find_files <CR>")
 map("n", "<leader>fo", "<cmd> Telescope oldfiles <CR>")
 map("n", "<leader>fg", "<cmd> Telescope live_grep <CR>")
 map("n", "<leader>gt", "<cmd> Telescope git_status <CR>")
+
+-- bufferline
+map("n", "<Tab>", "<cmd> BufferLineCycleNext <CR>")
+map("n", "<S-Tab>", "<cmd> BufferLineCyclePrev <CR>")
+map("n", "<leader>x", "<cmd> bd <CR>")
