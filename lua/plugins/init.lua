@@ -15,4 +15,10 @@ return {
 		cmd = { "NvimTreeToggle", "NvimTreeFocus" },
 		opts = {},
 	},
+
+  {
+		"nvim-telescope/telescope.nvim",
+		cmd = "Telescope",
+		dependencies = { "nvim-lua/plenary.nvim" },
+	},
 }
