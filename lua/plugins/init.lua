@@ -1,8 +1,8 @@
 return {
-  { "tiagovla/tokyodark.nvim" },
-  { "nvim-tree/nvim-web-devicons", opts = {} },
+	{ "tiagovla/tokyodark.nvim" },
+	{ "nvim-tree/nvim-web-devicons", opts = {} },
 
-  {
+	{
 		"nvim-lualine/lualine.nvim",
 		event = "VeryLazy",
 		opts = function()
@@ -10,19 +10,19 @@ return {
 		end,
 	},
 
-  {
+	{
 		"nvim-tree/nvim-tree.lua",
 		cmd = { "NvimTreeToggle", "NvimTreeFocus" },
 		opts = {},
 	},
 
-  {
+	{
 		"nvim-telescope/telescope.nvim",
 		cmd = "Telescope",
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
 
-  {
+	{
 		"akinsho/bufferline.nvim",
 		event = "BufReadPre",
 		opts = function()
@@ -30,7 +30,7 @@ return {
 		end,
 	},
 
-  {
+	{
 		"nvim-treesitter/nvim-treesitter",
 		dependencies = {
 			"JoosepAlviste/nvim-ts-context-commentstring",
@@ -42,23 +42,24 @@ return {
 		end,
 	},
 
-  {
+	{
 		"williamboman/mason.nvim",
 		cmd = { "Mason", "MasonInstall", "MasonUpdate" },
 		opts = {},
 	},
 
-  {
+	{
 		"williamboman/mason-lspconfig.nvim",
 		dependencies = {
 			"williamboman/mason.nvim",
+			"WhoIsSethDaniel/mason-tool-installer.nvim",
 		},
 		config = function()
 			require("plugins.configs.mason")
 		end,
 	},
 
-  	{
+	{
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = { "saghen/blink.cmp" },
@@ -87,4 +88,11 @@ return {
 		end,
 	},
 
+	{
+		"stevearc/conform.nvim",
+		event = "BufWritePre",
+		opts = function()
+			return require("plugins.configs.conform")
+		end,
+	},
 }
