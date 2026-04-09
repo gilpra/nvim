@@ -41,4 +41,50 @@ return {
 			return require("plugins.configs.treesitter")
 		end,
 	},
+
+  {
+		"williamboman/mason.nvim",
+		cmd = { "Mason", "MasonInstall", "MasonUpdate" },
+		opts = {},
+	},
+
+  {
+		"williamboman/mason-lspconfig.nvim",
+		dependencies = {
+			"williamboman/mason.nvim",
+		},
+		config = function()
+			require("plugins.configs.mason")
+		end,
+	},
+
+  	{
+		"neovim/nvim-lspconfig",
+		event = { "BufReadPre", "BufNewFile" },
+		dependencies = { "saghen/blink.cmp" },
+		config = function()
+			require("plugins.configs.servers")
+		end,
+	},
+
+	{
+		"saghen/blink.cmp",
+		event = "InsertEnter",
+		version = "*",
+		dependencies = {
+			{
+				"L3MON4D3/LuaSnip",
+				event = "InsertEnter",
+				dependencies = { "rafamadriz/friendly-snippets" },
+				config = function()
+					require("luasnip.loaders.from_vscode").lazy_load()
+				end,
+			},
+			{ "windwp/nvim-autopairs", opts = {} },
+		},
+		opts = function()
+			return require("plugins.configs.blink")
+		end,
+	},
+
 }
