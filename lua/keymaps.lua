@@ -26,3 +26,10 @@ map("n", "<leader>gt", "<cmd> Telescope git_status <CR>")
 map("n", "<Tab>", "<cmd> BufferLineCycleNext <CR>")
 map("n", "<S-Tab>", "<cmd> BufferLineCyclePrev <CR>")
 map("n", "<leader>x", "<cmd> bd <CR>")
+
+-- Trouble
+map("n", "<leader>tt", "<cmd> Trouble diagnostics toggle <CR>")
+map("n", "<leader>td", "<cmd> Trouble diagnostics toggle filter.buf=0 <CR>")
+map("n", "<leader>ts", "<cmd> Trouble symbols toggle <CR>")
+map("n", "<leader>tl", "<cmd> Trouble lsp toggle <CR>")
+map("n", "<leader>tq", "<cmd> Trouble qflist toggle <CR>")

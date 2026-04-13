@@ -102,4 +102,12 @@ return {
 		event = { "BufReadPre", "BufNewFile" },
 		version = "*",
 	},
+
+	{
+		"folke/trouble.nvim",
+		cmd = "Trouble",
+		opts = function()
+			return require("plugins.configs.trouble")
+		end,
+	},
 }
