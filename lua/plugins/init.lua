@@ -96,4 +96,10 @@ return {
 			return require("plugins.configs.conform")
 		end,
 	},
+
+	{
+		"kylechui/nvim-surround",
+		event = { "BufReadPre", "BufNewFile" },
+		version = "*",
+	},
 }
