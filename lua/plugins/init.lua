@@ -1,6 +1,7 @@
 return {
 	{ "tiagovla/tokyodark.nvim" },
 	{ "nvim-tree/nvim-web-devicons", opts = {} },
+	{ "lewis6991/gitsigns.nvim" },
 
 	{
 		"nvim-lualine/lualine.nvim",
