@@ -3,7 +3,6 @@ local function is_large(bufnr)
 	if not ok or not stats then
 		return false
 	end
-
 	local max_filesize = 300 * 1024 -- 300 KB
 	return stats.size > max_filesize
 end
@@ -26,6 +25,7 @@ return {
 	ensure_installed = {
 		"c",
 		"lua",
+		"json",
 		"markdown",
 		"markdown_inline",
 		"vim",
@@ -33,6 +33,10 @@ return {
 		"query",
 		"bash",
 		"regex",
+		"html",
+		"css",
+		"javascript",
+		"python",
 	},
 
 	highlight = {

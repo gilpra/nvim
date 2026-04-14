@@ -39,6 +39,7 @@ o.swapfile = false
 o.backup = false
 o.confirm = true
 o.hidden = true
+o.wrap = true
 
 -- Command completion
 o.wildmode = "longest:full,full"
