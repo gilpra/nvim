@@ -12,9 +12,26 @@ map({ "n", "v" }, "W", "$", { desc = "End of line" })
 map("n", "<leader>/", "gcc", { remap = true })
 map("v", "<leader>/", "gc", { remap = true })
 
+-- Split window
+map("n", "<leader>sh", "<cmd>sp<CR>")
+map("n", "<leader>sv", "<cmd>vsp<CR>")
+map("n", "<leader>se", "<cmd>wincmd =<CR>")
+map("n", "<leader>sx", "<cmd>close<CR>")
+
+-- Navigasi split (lebih cepat dari <C-w>hjkl)
+map("n", "<C-h>", "<C-w>h")
+map("n", "<C-l>", "<C-w>l")
+map("n", "<C-k>", "<C-w>k")
+map("n", "<C-j>", "<C-w>j")
+
+-- Resize split
+map("n", "<C-Left>", "<cmd>vertical resize -2<CR>")
+map("n", "<C-Right>", "<cmd>vertical resize +2<CR>")
+map("n", "<C-Up>", "<cmd>resize +2<CR>")
+map("n", "<C-Down>", "<cmd>resize -2<CR>")
+
 -- nvimtree
 map("n", "<C-n>", "<cmd>NvimTreeToggle<CR>")
-map("n", "<C-h>", "<cmd>NvimTreeFocus<CR>")
 
 -- telescope
 map("n", "<leader>ff", "<cmd>Telescope find_files<CR>")
