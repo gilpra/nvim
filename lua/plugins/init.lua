@@ -110,4 +110,13 @@ return {
 			return require("plugins.configs.trouble")
 		end,
 	},
+
+	{
+		"akinsho/toggleterm.nvim",
+		version = "*",
+		cmd = "ToggleTerm",
+		opts = function()
+			return require("plugins.configs.toggleterm")
+		end,
+	},
 }
