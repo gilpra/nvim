@@ -1,7 +1,16 @@
 return {
-	{ "tiagovla/tokyodark.nvim" },
+	{
+		"tiagovla/tokyodark.nvim",
+		event = "VeryLazy",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			vim.cmd("colorscheme tokyodark")
+		end,
+	},
+
 	{ "nvim-tree/nvim-web-devicons", opts = {} },
-	{ "lewis6991/gitsigns.nvim" },
+	{ "lewis6991/gitsigns.nvim", event = "BufReadPre" },
 
 	{
 		"nvim-lualine/lualine.nvim",
@@ -65,7 +74,14 @@ return {
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = { "saghen/blink.cmp" },
 		config = function()
-			require("plugins.configs.servers")
+			local lsp = require("plugins.configs.lspconfig")
+			lsp.defaults()
+
+			local servers = require("plugins.configs.servers")
+			for name, opts in pairs(servers) do
+				vim.lsp.config(name, opts)
+				vim.lsp.enable(name)
+			end
 		end,
 	},
 

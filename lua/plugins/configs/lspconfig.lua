@@ -14,8 +14,6 @@ M.on_attach = function(_, bufnr)
 	map("n", "<leader>rn", vim.lsp.buf.rename, opts("Rename"))
 	map("n", "<leader>ca", vim.lsp.buf.code_action, opts("Code action"))
 	map("n", "<leader>ds", vim.lsp.buf.document_symbol, opts("Document symbols"))
-	map("n", "[d", vim.diagnostic.goto_prev, opts("Prev diagnostic"))
-	map("n", "]d", vim.diagnostic.goto_next, opts("Next diagnostic"))
 	map("n", "<leader>e", vim.diagnostic.open_float, opts("Show diagnostic"))
 end
 

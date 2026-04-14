@@ -1,8 +1,6 @@
--- Ambil server names otomatis dari servers.lua
-local server_names = vim.tbl_keys(require("plugins.configs.servers"))
+local servers = require("plugins.configs.servers")
+local server_names = vim.tbl_keys(servers)
 
--- Ambil formatter names otomatis dari conform.lua
--- tbl_values menghasilkan list of lists, lalu flatten jadi satu list unik
 local formatter_names = {}
 local seen = {}
 for _, tools in pairs(require("plugins.configs.conform").formatters_by_ft) do
@@ -14,11 +12,11 @@ for _, tools in pairs(require("plugins.configs.conform").formatters_by_ft) do
 	end
 end
 
+require("mason").setup()
 require("mason-lspconfig").setup({
 	ensure_installed = server_names,
 	automatic_installation = true,
 })
-
 require("mason-tool-installer").setup({
 	ensure_installed = formatter_names,
 	auto_update = false,
