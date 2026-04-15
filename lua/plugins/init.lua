@@ -9,7 +9,6 @@ return {
 		end,
 	},
 
-	{ "nvim-tree/nvim-web-devicons", opts = {} },
 	{ "lewis6991/gitsigns.nvim", event = "BufReadPre" },
 
 	{
@@ -23,6 +22,7 @@ return {
 	{
 		"nvim-tree/nvim-tree.lua",
 		cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {},
 	},
 
@@ -42,6 +42,7 @@ return {
 
 	{
 		"nvim-treesitter/nvim-treesitter",
+		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			"JoosepAlviste/nvim-ts-context-commentstring",
 			"windwp/nvim-ts-autotag",
@@ -60,6 +61,7 @@ return {
 
 	{
 		"williamboman/mason-lspconfig.nvim",
+		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			"williamboman/mason.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",

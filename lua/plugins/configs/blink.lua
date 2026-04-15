@@ -30,7 +30,7 @@ return {
 				treesitter = { "lsp" },
 			},
 		},
-		ghost_text = { enabled = true },
+		ghost_text = { enabled = false },
 	},
 	signature = { enabled = true },
 }
