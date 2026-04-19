@@ -33,4 +33,9 @@ return {
 		ghost_text = { enabled = false },
 	},
 	signature = { enabled = true },
+	enabled = function()
+		if vim.tbl_contains({ "markdown", "text", "gitcommit" }, vim.bo.filetype) then
+			return false
+		end
+	end,
 }
