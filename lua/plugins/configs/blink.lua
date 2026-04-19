@@ -37,5 +37,19 @@ return {
 		if vim.tbl_contains({ "markdown", "text", "gitcommit" }, vim.bo.filetype) then
 			return false
 		end
+
+		local ok, node = pcall(vim.treesitter.get_node)
+		if ok and node then
+			local current = node
+			while current do
+				local t = current:type()
+				if t:find("string") then
+					return false
+				end
+				current = current:parent()
+			end
+		end
+
+		return true
 	end,
 }
