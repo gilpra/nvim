@@ -1,11 +1,11 @@
 return {
 	{
-		"tiagovla/tokyodark.nvim",
+		"folke/tokyonight.nvim",
 		event = "VeryLazy",
 		lazy = false,
 		priority = 1000,
 		config = function()
-			vim.cmd("colorscheme tokyodark")
+			vim.cmd("colorscheme tokyonight-night")
 		end,
 	},
 
