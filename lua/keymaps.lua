@@ -5,8 +5,12 @@ map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jj", "<Esc>")
 map("n", "<C-a>", "ggVG", { desc = "Select all" })
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<CR><Esc>", { desc = "Save file" })
-map({ "n", "v" }, "B", "^", { desc = "Beginning of line" })
-map({ "n", "v" }, "W", "$", { desc = "End of line" })
+map({ "n", "v" }, "H", "^", { desc = "Beginning of line" })
+map({ "n", "v" }, "L", "$", { desc = "End of line" })
+map("n", "<leader>nh", ":nohlsearch<CR>", { desc = "Clear search highlights" })
+-- Memindah blok teks yang diseleksi ke atas/bawah
+map("v", "J", ":m '>+1<CR>gv=gv")
+map("v", "K", ":m '<-2<CR>gv=gv")
 
 -- Coment
 map("n", "<leader>/", "gcc", { remap = true })
@@ -52,8 +56,8 @@ map("n", "<leader>tl", "<cmd>Trouble lsp toggle<CR>")
 map("n", "<leader>tq", "<cmd>Trouble qflist toggle<CR>")
 
 -- Toggleterm
-map("n", "<C-/>", "<cmd>ToggleTerm<CR>")
-map("t", "<C-/>", "<cmd>ToggleTerm<CR>")
+map("n", "<leader>/", "<cmd>ToggleTerm<CR>")
+map("t", "<leader>/", "<cmd>ToggleTerm<CR>")
 map("t", "jj", [[<C-\><C-n>]])
 map("n", "<leader>tf", "<cmd>ToggleTerm direction=float<CR>")
 map("n", "<leader>th", "<cmd>ToggleTerm direction=horizontal<CR>")
