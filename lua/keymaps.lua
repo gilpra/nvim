@@ -58,3 +58,19 @@ map("t", "jj", [[<C-\><C-n>]])
 map("n", "<leader>tf", "<cmd>ToggleTerm direction=float<CR>")
 map("n", "<leader>th", "<cmd>ToggleTerm direction=horizontal<CR>")
 map("n", "<leader>tv", "<cmd>ToggleTerm direction=vertical<CR>")
+
+-- Spectre
+map("n", "<leader>sr", "<cmd>Spectre<CR>", { desc = "Spectre: buka panel" })
+map(
+	"n",
+	"<leader>sw",
+	"<cmd>lua require('spectre').open_visual({select_word=true})<CR>",
+	{ desc = "Spectre: cari kata di cursor" }
+)
+map("v", "<leader>sw", "<cmd>lua require('spectre').open_visual()<CR>", { desc = "Spectre: cari selection" })
+map(
+	"n",
+	"<leader>sf",
+	"<cmd>lua require('spectre').open_file_search({select_word=true})<CR>",
+	{ desc = "Spectre: cari di file ini saja" }
+)

@@ -12,6 +12,14 @@ return {
 	{ "lewis6991/gitsigns.nvim", event = "BufReadPre" },
 
 	{
+		"norcalli/nvim-colorizer.lua",
+		event = { "BufReadPre", "BufNewFile" },
+		config = function()
+			return require("plugins.configs.nvim-colorizer")
+		end,
+	},
+
+	{
 		"nvim-lualine/lualine.nvim",
 		event = "VeryLazy",
 		opts = function()
@@ -135,6 +143,15 @@ return {
 		cmd = "ToggleTerm",
 		opts = function()
 			return require("plugins.configs.toggleterm")
+		end,
+	},
+
+	{
+		"nvim-pack/nvim-spectre",
+		cmd = "Spectre",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		opts = function()
+			return require("plugins.configs.nvim-spectre")
 		end,
 	},
 }
