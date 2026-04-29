@@ -34,8 +34,8 @@ map("n", "<C-Right>", "<cmd>vertical resize +2<CR>")
 map("n", "<C-Up>", "<cmd>resize +2<CR>")
 map("n", "<C-Down>", "<cmd>resize -2<CR>")
 
--- nvimtree
-map("n", "<C-n>", "<cmd>NvimTreeToggle<CR>")
+-- oil
+map("n", "-", "<CMD>Oil<CR>")
 
 -- telescope
 map("n", "<leader>ff", "<cmd>Telescope find_files<CR>")

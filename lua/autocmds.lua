@@ -4,7 +4,7 @@ autocmd("VimEnter", {
 	callback = function(data)
 		if vim.fn.isdirectory(data.file) == 1 then
 			vim.cmd.cd(data.file)
-			require("nvim-tree.api").tree.open()
+			require("oil").open()
 		end
 	end,
 })

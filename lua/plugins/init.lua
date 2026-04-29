@@ -28,10 +28,12 @@ return {
 	},
 
 	{
-		"nvim-tree/nvim-tree.lua",
-		cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+		"stevearc/oil.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-		opts = {},
+		lazy = false,
+		opts = function()
+			return require("plugins.configs.oil")
+		end,
 	},
 
 	{
