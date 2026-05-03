@@ -1,7 +1,6 @@
 return {
 	{
 		"folke/tokyonight.nvim",
-		event = "VeryLazy",
 		lazy = false,
 		priority = 1000,
 		config = function()
@@ -10,14 +9,23 @@ return {
 	},
 
 	{ "lewis6991/gitsigns.nvim", event = "BufReadPre" },
-	{ "wakatime/vim-wakatime", lazy = false },
+	{ "wakatime/vim-wakatime", event = "VeryLazy" },
 
 	{
 		"catgoose/nvim-colorizer.lua",
 		event = { "BufReadPre", "BufNewFile" },
-		config = function()
-			return require("plugins.configs.nvim-colorizer")
-		end,
+		opts = {
+			filetypes = { "*" },
+			user_default_options = {
+				RGB = true,
+				RRGGBB = true,
+				names = false,
+				RRGGBBAA = true,
+				rgb_fn = true,
+				hsl_fn = true,
+				css = true,
+			},
+		},
 	},
 
 	{
@@ -33,7 +41,7 @@ return {
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		lazy = false,
 		opts = function()
-			return require("plugins.configs.oil")
+			return require("plugins.configs.oil-nvim")
 		end,
 	},
 
@@ -111,7 +119,13 @@ return {
 					require("luasnip.loaders.from_vscode").lazy_load()
 				end,
 			},
-			{ "windwp/nvim-autopairs", opts = {} },
+			{
+				"windwp/nvim-autopairs",
+				event = "InsertEnter",
+				opts = {
+					check_ts = true, -- gunakan treesitter untuk context
+				},
+			},
 		},
 		opts = function()
 			return require("plugins.configs.blink")

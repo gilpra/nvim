@@ -56,8 +56,8 @@ map("n", "<leader>tl", "<cmd>Trouble lsp toggle<CR>")
 map("n", "<leader>tq", "<cmd>Trouble qflist toggle<CR>")
 
 -- Toggleterm
-map("n", "<leader>/", "<cmd>ToggleTerm<CR>")
-map("t", "<leader>/", "<cmd>ToggleTerm<CR>")
+map("n", "<leader>\\", "<cmd>ToggleTerm<CR>")
+map("t", "<leader>\\", "<cmd>ToggleTerm<CR>")
 map("t", "jj", [[<C-\><C-n>]])
 map("n", "<leader>tf", "<cmd>ToggleTerm direction=float<CR>")
 map("n", "<leader>th", "<cmd>ToggleTerm direction=horizontal<CR>")

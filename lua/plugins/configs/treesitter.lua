@@ -51,6 +51,6 @@ return {
 	},
 
 	autotag = {
-		enable = false,
+		enable = true,
 	},
 }
