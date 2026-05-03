@@ -10,9 +10,10 @@ return {
 	},
 
 	{ "lewis6991/gitsigns.nvim", event = "BufReadPre" },
+	{ "wakatime/vim-wakatime", lazy = false },
 
 	{
-		"norcalli/nvim-colorizer.lua",
+		"catgoose/nvim-colorizer.lua",
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			return require("plugins.configs.nvim-colorizer")
