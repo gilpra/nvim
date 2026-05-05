@@ -1,11 +1,26 @@
 return {
-	lua_ls = {
-		settings = {},
-	},
 	jsonls = {},
 	bashls = {},
-	html = {},
-	emmet_ls = {},
+	html = {
+		capabilities = {
+			textDocument = {
+				completion = {
+					completionItem = {
+						snippetSupport = false,
+					},
+				},
+			},
+		},
+	},
+	emmet_ls = {
+		filetypes = {
+			"html",
+			"css",
+			"scss",
+			"javascriptreact",
+			"typescriptreact",
+		},
+	},
 	cssls = {},
 	ts_ls = {},
 	pyright = {

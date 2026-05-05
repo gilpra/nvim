@@ -23,9 +23,9 @@ M.on_init = function(client, _)
 	end
 end
 
-M.capabilities = require("blink.cmp").get_lsp_capabilities()
-
 M.defaults = function()
+	local capabilities = require("blink.cmp").get_lsp_capabilities()
+
 	vim.diagnostic.config({
 		virtual_text = { prefix = "●" },
 		signs = true,
@@ -45,7 +45,7 @@ M.defaults = function()
 	})
 
 	vim.lsp.config("*", {
-		capabilities = M.capabilities,
+		capabilities = capabilities,
 		on_init = M.on_init,
 	})
 

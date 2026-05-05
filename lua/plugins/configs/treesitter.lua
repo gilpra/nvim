@@ -3,20 +3,12 @@ local function is_large(bufnr)
 	if not ok or not stats then
 		return false
 	end
-	local max_filesize = 300 * 1024 -- 300 KB
+	local max_filesize = 300 * 1024 -- 300 KB dalam bytes
 	return stats.size > max_filesize
 end
 
-local function disable_ts(lang, bufnr)
-	if lang == "json" then
-		return true
-	end
-
-	if is_large(bufnr) then
-		return true
-	end
-
-	return false
+local function disable_ts(_, bufnr)
+	return is_large(bufnr)
 end
 
 return {
@@ -25,12 +17,13 @@ return {
 	ensure_installed = {
 		"c",
 		"lua",
-		"json",
-		"markdown",
-		"markdown_inline",
 		"vim",
 		"vimdoc",
 		"query",
+
+		-- Parser untuk bahasa yang dipakai
+		"markdown",
+		"markdown_inline",
 		"bash",
 		"regex",
 		"html",

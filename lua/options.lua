@@ -1,14 +1,15 @@
 local o = vim.opt
 
--- Leader
+-- Leader Key
 vim.g.mapleader = " "
 
--- UI
+-- Tampilan UI
 o.laststatus = 3
 o.showmode = false
 o.cursorline = true
 o.number = true
 o.relativenumber = true
+o.numberwidth = 2
 o.scrolloff = 8
 o.sidescrolloff = 8
 o.signcolumn = "yes"
@@ -17,19 +18,20 @@ o.splitbelow = true
 o.splitright = true
 o.pumblend = 10
 o.winblend = 10
+o.updatetime = 250
 
--- Indent
+-- Indentasi
 o.expandtab = true
 o.shiftwidth = 2
 o.tabstop = 2
 o.softtabstop = 2
 o.smartindent = true
 
--- Search
+-- Pencarian
 o.ignorecase = true
 o.smartcase = true
 
--- Behavior
+-- Perilaku Editor
 o.mouse = "a"
 o.clipboard = "unnamedplus"
 o.timeoutlen = 400
@@ -37,11 +39,10 @@ o.undofile = true
 o.swapfile = false
 o.backup = false
 o.confirm = true
-o.hidden = true
 o.wrap = true
 
--- Command completion
+-- Command Completion
 o.wildmode = "longest:full,full"
 
--- Visual tweaks
+-- Visual Tweaks
 vim.opt.fillchars = { eob = " " }

@@ -3,22 +3,28 @@ return {
 		preset = "default",
 		["<C-Space>"] = { "show", "show_documentation", "hide_documentation" },
 		["<CR>"] = { "accept", "fallback" },
-		["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
-		["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+		["<C-n>"] = { "select_next", "fallback" },
+		["<C-p>"] = { "select_prev", "fallback" },
+		["<Tab>"] = { "snippet_forward", "fallback" },
+		["<S-Tab>"] = { "snippet_backward", "fallback" },
 		["<C-e>"] = { "hide" },
 		["<C-d>"] = { "scroll_documentation_down", "fallback" },
 		["<C-u>"] = { "scroll_documentation_up", "fallback" },
 	},
+
 	appearance = {
 		use_nvim_cmp_as_default = false,
 		nerd_font_variant = "mono",
 	},
+
 	snippets = {
 		preset = "luasnip",
 	},
+
 	sources = {
 		default = { "lsp", "path", "buffer", "snippets" },
 	},
+
 	completion = {
 		documentation = {
 			auto_show = true,
@@ -32,7 +38,9 @@ return {
 		},
 		ghost_text = { enabled = false },
 	},
+
 	signature = { enabled = true },
+
 	enabled = function()
 		local ok, result = pcall(function()
 			return not vim.tbl_contains({ "markdown", "text", "gitcommit", "oil" }, vim.bo.filetype)

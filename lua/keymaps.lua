@@ -1,80 +1,48 @@
 local map = vim.keymap.set
 
-map("n", "<C-s>", "<cmd>w<CR>")
-map("n", ";", ":", { desc = "CMD enter command mode" })
-map("i", "jj", "<Esc>")
-map("n", "<C-a>", "ggVG", { desc = "Select all" })
+-- Simpan File
+map("n", "<C-s>", "<cmd>w<CR>", { desc = "Save file" })
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<CR><Esc>", { desc = "Save file" })
-map({ "n", "v" }, "H", "^", { desc = "Beginning of line" })
-map({ "n", "v" }, "L", "$", { desc = "End of line" })
-map("n", "<leader>nh", ":nohlsearch<CR>", { desc = "Clear search highlights" })
--- Memindah blok teks yang diseleksi ke atas/bawah
-map("v", "J", ":m '>+1<CR>gv=gv")
-map("v", "K", ":m '<-2<CR>gv=gv")
 
--- Coment
-map("n", "<leader>/", "gcc", { remap = true })
-map("v", "<leader>/", "gc", { remap = true })
+-- Mode Switching
+map("n", ";", ":", { desc = "Enter command mode" })
 
--- Split window
-map("n", "<leader>sh", "<cmd>sp<CR>")
-map("n", "<leader>sv", "<cmd>vsp<CR>")
-map("n", "<leader>se", "<cmd>wincmd =<CR>")
-map("n", "<leader>sx", "<cmd>close<CR>")
+-- jj di insert mode = tekan Escape (keluar ke normal mode)
+map("i", "jj", "<Esc>", { desc = "Exit insert mode" })
 
--- Navigasi split (lebih cepat dari <C-w>hjkl)
-map("n", "<C-h>", "<C-w>h")
-map("n", "<C-l>", "<C-w>l")
-map("n", "<C-k>", "<C-w>k")
-map("n", "<C-j>", "<C-w>j")
+-- Navigasi
+map("n", "<C-a>", "ggVG", { desc = "Select all text" })
+map({ "n", "v" }, "H", "^", { desc = "Jump to beginning of line" })
+map({ "n", "v" }, "L", "$", { desc = "Jump to end of line" })
 
--- Resize split
-map("n", "<C-Left>", "<cmd>vertical resize -2<CR>")
-map("n", "<C-Right>", "<cmd>vertical resize +2<CR>")
-map("n", "<C-Up>", "<cmd>resize +2<CR>")
-map("n", "<C-Down>", "<cmd>resize -2<CR>")
+-- Hapus highlight kuning setelah pencarian dengan /
+map("n", "<leader>nh", ":nohlsearch<CR>", { desc = "Clear search highlight" })
 
--- oil
-map("n", "-", "<CMD>Oil<CR>")
+-- Edit
+map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move line down" })
+map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move line up" })
 
--- telescope
-map("n", "<leader>ff", "<cmd>Telescope find_files<CR>")
-map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>")
-map("n", "<leader>fg", "<cmd>Telescope live_grep<CR>")
-map("n", "<leader>gt", "<cmd>Telescope git_status<CR>")
+-- Komentar
+map("n", "<leader>/", "gcc", { remap = true, desc = "Toggle line comment" })
+map("v", "<leader>/", "gc", { remap = true, desc = "Toggle selection comment" })
 
--- bufferline
-map("n", "<Tab>", "<cmd>BufferLineCycleNext<CR>")
-map("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<CR>")
-map("n", "<leader>x", "<cmd>bd<CR>")
+-- Split Window
+map("n", "<leader>sh", "<cmd>sp<CR>", { desc = "Split: horizontal" })
+map("n", "<leader>sv", "<cmd>vsp<CR>", { desc = "Split: vertical" })
+map("n", "<leader>se", "<cmd>wincmd =<CR>", { desc = "Split: equalize size" })
+map("n", "<leader>sx", "<cmd>close<CR>", { desc = "Split: close current pane" })
 
--- Trouble
-map("n", "<leader>tt", "<cmd>Trouble diagnostics toggle<CR>")
-map("n", "<leader>td", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>")
-map("n", "<leader>ts", "<cmd>Trouble symbols toggle<CR>")
-map("n", "<leader>tl", "<cmd>Trouble lsp toggle<CR>")
-map("n", "<leader>tq", "<cmd>Trouble qflist toggle<CR>")
+-- Navigasi Antar Panel
+map("n", "<C-h>", "<C-w>h", { desc = "Move to left pane" })
+map("n", "<C-l>", "<C-w>l", { desc = "Move to right pane" })
+map("n", "<C-k>", "<C-w>k", { desc = "Move to upper pane" })
+map("n", "<C-j>", "<C-w>j", { desc = "Move to lower pane" })
 
--- Toggleterm
-map("n", "<leader>\\", "<cmd>ToggleTerm<CR>")
-map("t", "<leader>\\", "<cmd>ToggleTerm<CR>")
-map("t", "jj", [[<C-\><C-n>]])
-map("n", "<leader>tf", "<cmd>ToggleTerm direction=float<CR>")
-map("n", "<leader>th", "<cmd>ToggleTerm direction=horizontal<CR>")
-map("n", "<leader>tv", "<cmd>ToggleTerm direction=vertical<CR>")
+-- Resize Panel
+map("n", "<C-Left>", "<cmd>vertical resize -2<CR>", { desc = "Pane: decrease width" })
+map("n", "<C-Right>", "<cmd>vertical resize +2<CR>", { desc = "Pane: increase width" })
+map("n", "<C-Up>", "<cmd>resize +2<CR>", { desc = "Pane: increase height" })
+map("n", "<C-Down>", "<cmd>resize -2<CR>", { desc = "Pane: decrease height" })
 
--- Spectre
-map("n", "<leader>sr", "<cmd>Spectre<CR>", { desc = "Spectre: buka panel" })
-map(
-	"n",
-	"<leader>sw",
-	"<cmd>lua require('spectre').open_visual({select_word=true})<CR>",
-	{ desc = "Spectre: cari kata di cursor" }
-)
-map("v", "<leader>sw", "<cmd>lua require('spectre').open_visual()<CR>", { desc = "Spectre: cari selection" })
-map(
-	"n",
-	"<leader>sf",
-	"<cmd>lua require('spectre').open_file_search({select_word=true})<CR>",
-	{ desc = "Spectre: cari di file ini saja" }
-)
+-- Terminal Mode
+map("t", "jj", [[<C-\><C-n>]], { desc = "Terminal: exit to normal mode" })

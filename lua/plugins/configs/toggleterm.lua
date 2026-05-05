@@ -7,27 +7,25 @@ return {
 		end
 	end,
 
-	open_mapping = [[<C-/>]],
 	hide_numbers = true,
 	shade_terminals = true,
 	shading_factor = 2,
 	start_inserted = true,
-	insert_mappings = true,
 	persist_size = true,
 	close_on_exit = true,
 	auto_scroll = true,
 
-	direction = "float", -- "horizontal" | "vertical" | "float" | "tab"
+	direction = "float",
 
 	float_opts = {
-		border = "curved", -- "single" | "double" | "shadow" | "curved"
+		border = "curved",
 		width = function()
-			return math.floor(vim.o.columns * 0.8)
+			return math.floor(vim.o.columns * 0.8) -- 80% lebar layar
 		end,
 		height = function()
-			return math.floor(vim.o.lines * 0.8)
+			return math.floor(vim.o.lines * 0.8) -- 80% tinggi layar
 		end,
-		winblend = 10,
+		winblend = 10, -- sedikit transparansi
 	},
 
 	highlights = {

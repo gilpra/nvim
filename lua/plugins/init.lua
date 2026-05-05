@@ -8,24 +8,25 @@ return {
 		end,
 	},
 
-	{ "lewis6991/gitsigns.nvim", event = "BufReadPre" },
-	{ "wakatime/vim-wakatime", event = "VeryLazy" },
+	{
+		"lewis6991/gitsigns.nvim",
+		event = "BufReadPost",
+		opts = function()
+			return require("plugins.configs.gitsigns")
+		end,
+	},
+
+	{
+		"wakatime/vim-wakatime",
+		event = "BufReadPost",
+	},
 
 	{
 		"catgoose/nvim-colorizer.lua",
 		event = { "BufReadPre", "BufNewFile" },
-		opts = {
-			filetypes = { "*" },
-			user_default_options = {
-				RGB = true,
-				RRGGBB = true,
-				names = false,
-				RRGGBBAA = true,
-				rgb_fn = true,
-				hsl_fn = true,
-				css = true,
-			},
-		},
+		opts = function()
+			return require("plugins.configs.nvim-colorizer")
+		end,
 	},
 
 	{
@@ -40,6 +41,14 @@ return {
 		"stevearc/oil.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		lazy = false,
+		keys = {
+			{
+				"-",
+				"<CMD>Oil<CR>",
+				mode = "n",
+				desc = "Oil: open file explorer",
+			},
+		},
 		opts = function()
 			return require("plugins.configs.oil-nvim")
 		end,
@@ -47,13 +56,62 @@ return {
 
 	{
 		"nvim-telescope/telescope.nvim",
-		cmd = "Telescope",
-		dependencies = { "nvim-lua/plenary.nvim" },
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+		},
+		keys = {
+			{
+				"<leader>ff",
+				"<cmd>Telescope find_files<CR>",
+				desc = "Telescope: find files",
+			},
+			{
+				"<leader>fo",
+				"<cmd>Telescope oldfiles<CR>",
+				desc = "Telescope: recently opened files",
+			},
+			{
+				"<leader>fg",
+				"<cmd>Telescope live_grep<CR>",
+				desc = "Telescope: search text in project",
+			},
+			{
+				"<leader>gt",
+				"<cmd>Telescope git_status<CR>",
+				desc = "Telescope: git status",
+			},
+		},
+		opts = {
+			extensions_list = { "fzf" },
+		},
 	},
 
 	{
 		"akinsho/bufferline.nvim",
 		event = "BufReadPre",
+		keys = {
+			{
+				"<Tab>",
+				"<cmd>BufferLineCycleNext<CR>",
+				desc = "Buffer: next",
+			},
+			{
+				"<S-Tab>",
+				"<cmd>BufferLineCyclePrev<CR>",
+				desc = "Buffer: previous",
+			},
+			{
+				"<leader>x",
+				"<cmd>bd<CR>",
+				desc = "Buffer: close",
+			},
+			{
+				"<leader>ox",
+				"<cmd>BufferLineCloseOther<CR>",
+				desc = "Buffer: close others",
+			},
+		},
 		opts = function()
 			return require("plugins.configs.bufferline")
 		end,
@@ -63,11 +121,22 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
-			"JoosepAlviste/nvim-ts-context-commentstring",
+			{
+				"JoosepAlviste/nvim-ts-context-commentstring",
+				opts = { enable_autocmd = false },
+			},
 			"windwp/nvim-ts-autotag",
 		},
 		build = ":TSUpdate",
 		opts = function()
+			vim.g.skip_ts_context_commentstring_module = true
+			local get_option = vim.filetype.get_option
+			vim.filetype.get_option = function(filetype, option) ---@diagnostic disable-line: duplicate-set-field
+				return option == "commentstring"
+						and require("ts_context_commentstring.internal").calculate_commentstring()
+					or get_option(filetype, option)
+			end
+
 			return require("plugins.configs.treesitter")
 		end,
 	},
@@ -86,7 +155,7 @@ return {
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 		},
 		config = function()
-			require("plugins.configs.mason")
+			require("plugins.configs.mason").setup()
 		end,
 	},
 
@@ -114,7 +183,9 @@ return {
 			{
 				"L3MON4D3/LuaSnip",
 				event = "InsertEnter",
-				dependencies = { "rafamadriz/friendly-snippets" },
+				dependencies = {
+					"rafamadriz/friendly-snippets",
+				},
 				config = function()
 					require("luasnip.loaders.from_vscode").lazy_load()
 				end,
@@ -123,7 +194,9 @@ return {
 				"windwp/nvim-autopairs",
 				event = "InsertEnter",
 				opts = {
-					check_ts = true, -- gunakan treesitter untuk context
+					check_ts = true, -- gunakan treesitter untuk context yang lebih akurat
+					fast_wrap = {},
+					disable_filetype = { "TelescopePrompt", "vim" },
 				},
 			},
 		},
@@ -142,22 +215,45 @@ return {
 
 	{
 		"kylechui/nvim-surround",
-		event = { "BufReadPre", "BufNewFile" },
 		version = "*",
-	},
-
-	{
-		"folke/trouble.nvim",
-		cmd = "Trouble",
-		opts = function()
-			return require("plugins.configs.trouble")
-		end,
+		keys = {
+			{ "ys", mode = "n", desc = "Surround: add (ysiw=wrap word)" },
+			{ "cs", mode = "n", desc = "Surround: change" },
+			{ "ds", mode = "n", desc = "Surround: delete" },
+			{ "S", mode = "v", desc = "Surround: wrap selection" },
+		},
+		opts = {},
 	},
 
 	{
 		"akinsho/toggleterm.nvim",
 		version = "*",
-		cmd = "ToggleTerm",
+		keys = {
+			{
+				"<A-i>",
+				"<cmd>ToggleTerm<CR>",
+				mode = { "n", "t" },
+				desc = "Terminal: toggle",
+			},
+			{
+				"<A-f>",
+				"<cmd>ToggleTerm direction=float<CR>",
+				mode = "n",
+				desc = "Terminal: floating",
+			},
+			{
+				"<A-h>",
+				"<cmd>ToggleTerm direction=horizontal<CR>",
+				mode = "n",
+				desc = "Terminal: horizontal",
+			},
+			{
+				"<A-v>",
+				"<cmd>ToggleTerm direction=vertical<CR>",
+				mode = "n",
+				desc = "Terminal: vertical",
+			},
+		},
 		opts = function()
 			return require("plugins.configs.toggleterm")
 		end,
@@ -165,8 +261,39 @@ return {
 
 	{
 		"nvim-pack/nvim-spectre",
-		cmd = "Spectre",
 		dependencies = { "nvim-lua/plenary.nvim" },
+		keys = {
+			{
+				"<leader>sr",
+				"<cmd>Spectre<CR>",
+				mode = "n",
+				desc = "Spectre: open panel",
+			},
+			{
+				"<leader>sw",
+				function()
+					require("spectre").open_visual({ select_word = true })
+				end,
+				mode = "n",
+				desc = "Spectre: search word under cursor",
+			},
+			{
+				"<leader>sw",
+				function()
+					require("spectre").open_visual()
+				end,
+				mode = "v",
+				desc = "Spectre: search selection",
+			},
+			{
+				"<leader>sf",
+				function()
+					require("spectre").open_file_search({ select_word = true })
+				end,
+				mode = "n",
+				desc = "Spectre: search in current file",
+			},
+		},
 		opts = function()
 			return require("plugins.configs.nvim-spectre")
 		end,

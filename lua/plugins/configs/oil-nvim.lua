@@ -1,10 +1,10 @@
 return {
 	default_file_explorer = true, -- gantikan netrw sepenuhnya
 	columns = {
-		"icon",
 		"permissions",
 		"size",
 		"mtime",
+		"icon",
 	},
 	buf_options = {
 		buflisted = false,
