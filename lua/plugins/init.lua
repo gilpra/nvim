@@ -82,14 +82,13 @@ return {
 				desc = "Telescope: git status",
 			},
 		},
-		opts = {
-			extensions_list = { "fzf" },
-		},
+		config = function()
+			require("plugins.configs.telescope").setup()
+		end,
 	},
 
 	{
 		"akinsho/bufferline.nvim",
-		event = "BufReadPre",
 		keys = {
 			{
 				"<Tab>",
@@ -107,7 +106,7 @@ return {
 				desc = "Buffer: close",
 			},
 			{
-				"<leader>ox",
+				"<leader>bx",
 				"<cmd>BufferLineCloseOther<CR>",
 				desc = "Buffer: close others",
 			},
@@ -195,7 +194,6 @@ return {
 				event = "InsertEnter",
 				opts = {
 					check_ts = true, -- gunakan treesitter untuk context yang lebih akurat
-					fast_wrap = {},
 					disable_filetype = { "TelescopePrompt", "vim" },
 				},
 			},
