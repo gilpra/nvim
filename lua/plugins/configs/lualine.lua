@@ -1,7 +1,9 @@
 return {
 	options = {
-		icons_enabled = true,
-		theme = "auto", -- otomatis ikuti colorscheme aktif
+		icons_enabled = false,
+		theme = function()
+			return require("minimal_night.lualine").get()
+		end,
 
 		component_separators = { left = "│", right = "│" },
 		section_separators = { left = "", right = "" },
@@ -12,13 +14,17 @@ return {
 		},
 
 		globalstatus = true,
+		refresh = {
+			statusline = 500,
+			tabline = 1000,
+			winbar = 1000,
+		},
 	},
 
 	sections = {
 		lualine_a = { "mode" }, -- mode: NORMAL, INSERT, VISUAL, dll
 		lualine_b = {
 			{ "branch", icons_enabled = true }, -- nama git branch
-			{ "diff", colored = false }, -- +tambah ~ubah -hapus
 			{ "diagnostics", sources = { "nvim_lsp" } }, -- error/warning dari LSP
 		},
 
@@ -31,16 +37,14 @@ return {
 		},
 
 		lualine_x = {
-			"encoding",
 			"fileformat",
 			"filetype",
 		},
 
-		lualine_y = { "progress" }, -- persentase posisi di file (TOP, 50%, BOT)
+		lualine_y = {},
 		lualine_z = { "location" }, -- baris:kolom
 	},
 
-	-- Tampilan untuk window yang tidak aktif (split lain)
 	inactive_sections = {
 		lualine_a = { "filename" },
 		lualine_b = {},

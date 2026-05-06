@@ -1,6 +1,6 @@
 return {
 	open_cmd = "noswapfile vnew", -- buka di vertical split
-	live_update = false, -- true = update realtime saat mengetik (lebih berat)
+	live_update = false,
 	is_insert_mode = false,
 	mapping = {
 		["toggle_line"] = {

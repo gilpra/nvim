@@ -1,8 +1,6 @@
 return {
 	default_file_explorer = true, -- gantikan netrw sepenuhnya
 	columns = {
-		"permissions",
-		"size",
 		"mtime",
 		"icon",
 	},
@@ -26,8 +24,8 @@ return {
 	keymaps = {
 		["g?"] = "actions.show_help",
 		["<CR>"] = "actions.select",
-		["<C-s>"] = "actions.select_vsplit",
-		["<C-h>"] = "actions.select_split",
+		["<C-v>"] = "actions.select_vsplit",
+		["<C-x>"] = "actions.select_split",
 		["<C-t>"] = "actions.select_tab",
 		["<C-p>"] = "actions.preview",
 		["<C-c>"] = "actions.close",
@@ -54,15 +52,6 @@ return {
 		sort = {
 			{ "type", "asc" },
 			{ "name", "asc" },
-		},
-	},
-	float = {
-		padding = 2,
-		max_width = 80,
-		max_height = 30,
-		border = "rounded",
-		win_options = {
-			winblend = 10,
 		},
 	},
 }

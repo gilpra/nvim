@@ -8,7 +8,7 @@ M.setup = function()
 	local seen = {}
 	for _, tools in pairs(require("plugins.configs.conform").formatters_by_ft) do
 		for _, tool in ipairs(tools) do
-			if not seen[tool] then
+			if type(tool) == "string" and not seen[tool] then
 				seen[tool] = true
 				table.insert(formatter_names, tool)
 			end
@@ -19,13 +19,13 @@ M.setup = function()
 
 	require("mason-lspconfig").setup({
 		ensure_installed = server_names,
-		automatic_installation = true,
+		automatic_installation = false,
 	})
 
 	require("mason-tool-installer").setup({
 		ensure_installed = formatter_names,
 		auto_update = false,
-		run_on_start = false, -- jangan cek setiap startup, hanya saat :MasonToolsInstall
+		run_on_start = false,
 	})
 end
 

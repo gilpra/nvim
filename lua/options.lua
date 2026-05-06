@@ -1,8 +1,10 @@
-local o = vim.opt
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 -- Leader Key
 vim.g.mapleader = " "
 
+local o = vim.opt
 -- Tampilan UI
 o.laststatus = 3
 o.showmode = false
@@ -33,7 +35,11 @@ o.smartcase = true
 
 -- Perilaku Editor
 o.mouse = "a"
-o.clipboard = "unnamedplus"
+
+vim.schedule(function()
+	vim.opt.clipboard = "unnamedplus"
+end)
+
 o.timeoutlen = 400
 o.undofile = true
 o.swapfile = false

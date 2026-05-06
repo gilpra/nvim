@@ -2,13 +2,13 @@ local map = vim.keymap.set
 
 -- Simpan File
 map("n", "<C-s>", "<cmd>w<CR>", { desc = "Save file" })
-map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<CR><Esc>", { desc = "Save file" })
+map({ "i", "x", "s" }, "<C-s>", "<cmd>w<CR><Esc>", { desc = "Save file" })
 
 -- Mode Switching
 map("n", ";", ":", { desc = "Enter command mode" })
 
--- jj di insert mode = tekan Escape (keluar ke normal mode)
-map("i", "jj", "<Esc>", { desc = "Exit insert mode" })
+-- jk di insert mode = tekan Escape (keluar ke normal mode)
+map("i", "jk", "<Esc>", { desc = "Exit insert mode" })
 
 -- Navigasi
 map("n", "<C-a>", "ggVG", { desc = "Select all text" })
@@ -16,7 +16,7 @@ map({ "n", "v" }, "H", "^", { desc = "Jump to beginning of line" })
 map({ "n", "v" }, "L", "$", { desc = "Jump to end of line" })
 
 -- Hapus highlight kuning setelah pencarian dengan /
-map("n", "<leader>nh", ":nohlsearch<CR>", { desc = "Clear search highlight" })
+map("n", "<leader>nh", "<cmd>nohlsearch<CR>", { desc = "Clear search highlight" })
 
 -- Edit
 map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move line down" })

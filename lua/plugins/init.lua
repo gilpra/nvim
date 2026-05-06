@@ -1,120 +1,8 @@
 return {
-	{
-		"folke/tokyonight.nvim",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			vim.cmd("colorscheme tokyonight-night")
-		end,
-	},
 
-	{
-		"lewis6991/gitsigns.nvim",
-		event = "BufReadPost",
-		opts = function()
-			return require("plugins.configs.gitsigns")
-		end,
-	},
-
-	{
-		"wakatime/vim-wakatime",
-		event = "BufReadPost",
-	},
-
-	{
-		"catgoose/nvim-colorizer.lua",
-		event = { "BufReadPre", "BufNewFile" },
-		opts = function()
-			return require("plugins.configs.nvim-colorizer")
-		end,
-	},
-
-	{
-		"nvim-lualine/lualine.nvim",
-		event = "VeryLazy",
-		opts = function()
-			return require("plugins.configs.lualine")
-		end,
-	},
-
-	{
-		"stevearc/oil.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		lazy = false,
-		keys = {
-			{
-				"-",
-				"<CMD>Oil<CR>",
-				mode = "n",
-				desc = "Oil: open file explorer",
-			},
-		},
-		opts = function()
-			return require("plugins.configs.oil-nvim")
-		end,
-	},
-
-	{
-		"nvim-telescope/telescope.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-		},
-		keys = {
-			{
-				"<leader>ff",
-				"<cmd>Telescope find_files<CR>",
-				desc = "Telescope: find files",
-			},
-			{
-				"<leader>fo",
-				"<cmd>Telescope oldfiles<CR>",
-				desc = "Telescope: recently opened files",
-			},
-			{
-				"<leader>fg",
-				"<cmd>Telescope live_grep<CR>",
-				desc = "Telescope: search text in project",
-			},
-			{
-				"<leader>gt",
-				"<cmd>Telescope git_status<CR>",
-				desc = "Telescope: git status",
-			},
-		},
-		config = function()
-			require("plugins.configs.telescope").setup()
-		end,
-	},
-
-	{
-		"akinsho/bufferline.nvim",
-		keys = {
-			{
-				"<Tab>",
-				"<cmd>BufferLineCycleNext<CR>",
-				desc = "Buffer: next",
-			},
-			{
-				"<S-Tab>",
-				"<cmd>BufferLineCyclePrev<CR>",
-				desc = "Buffer: previous",
-			},
-			{
-				"<leader>x",
-				"<cmd>bd<CR>",
-				desc = "Buffer: close",
-			},
-			{
-				"<leader>bx",
-				"<cmd>BufferLineCloseOther<CR>",
-				desc = "Buffer: close others",
-			},
-		},
-		opts = function()
-			return require("plugins.configs.bufferline")
-		end,
-	},
+	-- =========================
+	-- CORE
+	-- =========================
 
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -128,14 +16,6 @@ return {
 		},
 		build = ":TSUpdate",
 		opts = function()
-			vim.g.skip_ts_context_commentstring_module = true
-			local get_option = vim.filetype.get_option
-			vim.filetype.get_option = function(filetype, option) ---@diagnostic disable-line: duplicate-set-field
-				return option == "commentstring"
-						and require("ts_context_commentstring.internal").calculate_commentstring()
-					or get_option(filetype, option)
-			end
-
 			return require("plugins.configs.treesitter")
 		end,
 	},
@@ -174,6 +54,53 @@ return {
 		end,
 	},
 
+	-- =========================
+	-- LSP UI / DIAGNOSTICS
+	-- =========================
+
+	{
+		"folke/trouble.nvim",
+		cmd = "Trouble",
+		keys = {
+			{
+				"<leader>tt",
+				"<cmd>Trouble diagnostics toggle<CR>",
+				desc = "Trouble: all diagnostics",
+			},
+			{
+				"<leader>td",
+				"<cmd>Trouble diagnostics toggle filter.buf=0<CR>",
+				desc = "Trouble: current file diagnostics",
+			},
+			{
+				"<leader>ts",
+				"<cmd>Trouble symbols toggle<CR>",
+				desc = "Trouble: symbols (code outline)",
+			},
+			{
+				"<leader>tl",
+				"<cmd>Trouble lsp toggle<CR>",
+				desc = "Trouble: LSP panel",
+			},
+			{
+				"<leader>tq",
+				"<cmd>Trouble qflist toggle<CR>",
+				desc = "Trouble: quickfix list",
+			},
+		},
+		opts = {
+			modes = {
+				diagnostics = {
+					auto_close = true,
+				},
+			},
+		},
+	},
+
+	-- =========================
+	-- COMPLETION & EDITING
+	-- =========================
+
 	{
 		"saghen/blink.cmp",
 		event = "InsertEnter",
@@ -193,7 +120,7 @@ return {
 				"windwp/nvim-autopairs",
 				event = "InsertEnter",
 				opts = {
-					check_ts = true, -- gunakan treesitter untuk context yang lebih akurat
+					check_ts = true,
 					disable_filetype = { "TelescopePrompt", "vim" },
 				},
 			},
@@ -204,18 +131,10 @@ return {
 	},
 
 	{
-		"stevearc/conform.nvim",
-		event = "BufWritePre",
-		opts = function()
-			return require("plugins.configs.conform")
-		end,
-	},
-
-	{
 		"kylechui/nvim-surround",
 		version = "*",
 		keys = {
-			{ "ys", mode = "n", desc = "Surround: add (ysiw=wrap word)" },
+			{ "ys", mode = "n", desc = "Surround: add" },
 			{ "cs", mode = "n", desc = "Surround: change" },
 			{ "ds", mode = "n", desc = "Surround: delete" },
 			{ "S", mode = "v", desc = "Surround: wrap selection" },
@@ -223,37 +142,36 @@ return {
 		opts = {},
 	},
 
+	-- =========================
+	-- FORMATTER
+	-- =========================
+
 	{
-		"akinsho/toggleterm.nvim",
-		version = "*",
-		keys = {
-			{
-				"<A-i>",
-				"<cmd>ToggleTerm<CR>",
-				mode = { "n", "t" },
-				desc = "Terminal: toggle",
-			},
-			{
-				"<A-f>",
-				"<cmd>ToggleTerm direction=float<CR>",
-				mode = "n",
-				desc = "Terminal: floating",
-			},
-			{
-				"<A-h>",
-				"<cmd>ToggleTerm direction=horizontal<CR>",
-				mode = "n",
-				desc = "Terminal: horizontal",
-			},
-			{
-				"<A-v>",
-				"<cmd>ToggleTerm direction=vertical<CR>",
-				mode = "n",
-				desc = "Terminal: vertical",
-			},
-		},
+		"stevearc/conform.nvim",
+		event = "BufWritePre",
 		opts = function()
-			return require("plugins.configs.toggleterm")
+			return require("plugins.configs.conform")
+		end,
+	},
+
+	-- =========================
+	-- SEARCH & NAVIGATION
+	-- =========================
+
+	{
+		"nvim-telescope/telescope.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+		},
+		keys = {
+			{ "<leader>ff", "<cmd>Telescope find_files<CR>", desc = "Find files" },
+			{ "<leader>fo", "<cmd>Telescope oldfiles<CR>", desc = "Recent files" },
+			{ "<leader>fg", "<cmd>Telescope live_grep<CR>", desc = "Live grep" },
+			{ "<leader>gt", "<cmd>Telescope git_status<CR>", desc = "Git status" },
+		},
+		config = function()
+			require("plugins.configs.telescope").setup()
 		end,
 	},
 
@@ -261,19 +179,14 @@ return {
 		"nvim-pack/nvim-spectre",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		keys = {
-			{
-				"<leader>sr",
-				"<cmd>Spectre<CR>",
-				mode = "n",
-				desc = "Spectre: open panel",
-			},
+			{ "<leader>sr", "<cmd>Spectre<CR>", desc = "Spectre panel" },
 			{
 				"<leader>sw",
 				function()
 					require("spectre").open_visual({ select_word = true })
 				end,
-				mode = "n",
-				desc = "Spectre: search word under cursor",
+				mode = "n", -- tambah mode eksplisit
+				desc = "Search word under cursor",
 			},
 			{
 				"<leader>sw",
@@ -281,19 +194,114 @@ return {
 					require("spectre").open_visual()
 				end,
 				mode = "v",
-				desc = "Spectre: search selection",
+				desc = "Search selection",
 			},
 			{
 				"<leader>sf",
 				function()
 					require("spectre").open_file_search({ select_word = true })
 				end,
-				mode = "n",
-				desc = "Spectre: search in current file",
+				desc = "Search in current file",
 			},
 		},
 		opts = function()
 			return require("plugins.configs.nvim-spectre")
+		end,
+	},
+
+	-- =========================
+	-- FILE EXPLORER
+	-- =========================
+
+	{
+		"stevearc/oil.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		lazy = false,
+		keys = {
+			{ "-", "<CMD>Oil<CR>", desc = "Open explorer" },
+		},
+		opts = function()
+			return require("plugins.configs.oil-nvim")
+		end,
+	},
+
+	-- =========================
+	-- GIT & TRACKING
+	-- =========================
+
+	{
+		"lewis6991/gitsigns.nvim",
+		event = "BufReadPost",
+		opts = function()
+			return require("plugins.configs.gitsigns")
+		end,
+	},
+
+	{
+		"wakatime/vim-wakatime",
+		event = "BufReadPost",
+	},
+
+	-- =========================
+	-- UI & VISUAL
+	-- =========================
+
+	{
+		name = "minimal_night",
+		dir = vim.fn.stdpath("config"),
+		priority = 1000,
+		lazy = false,
+
+		config = function()
+			vim.cmd.colorscheme("minimal_night")
+		end,
+	},
+
+	{
+		"nvim-lualine/lualine.nvim",
+		event = "VeryLazy",
+		opts = function()
+			return require("plugins.configs.lualine")
+		end,
+	},
+
+	{
+		"akinsho/bufferline.nvim",
+		event = "BufReadPre",
+		keys = {
+			{ "<Tab>", "<cmd>BufferLineCycleNext<CR>", desc = "Next buffer" },
+			{ "<S-Tab>", "<cmd>BufferLineCyclePrev<CR>", desc = "Prev buffer" },
+			{ "<leader>x", "<cmd>bd<CR>", desc = "Close buffer" },
+			{ "<leader>bx", "<cmd>BufferLineCloseOthers<CR>", desc = "Close others" },
+		},
+		opts = function()
+			return require("plugins.configs.bufferline")
+		end,
+	},
+
+	{
+		"catgoose/nvim-colorizer.lua",
+		event = { "BufReadPre", "BufNewFile" },
+		opts = function()
+			return require("plugins.configs.nvim-colorizer")
+		end,
+	},
+
+	-- =========================
+	-- TERMINAL
+	-- =========================
+
+	{
+		"akinsho/toggleterm.nvim",
+		version = "*",
+		keys = {
+			{ "<A-i>", "<cmd>ToggleTerm<CR>", mode = { "n", "t" }, desc = "Toggle term" },
+			{ "<A-f>", "<cmd>ToggleTerm direction=float<CR>", desc = "Float term" },
+			{ "<A-h>", "<cmd>ToggleTerm direction=horizontal<CR>", desc = "Horizontal term" },
+			{ "<A-v>", "<cmd>ToggleTerm direction=vertical<CR>", desc = "Vertical term" },
+		},
+		opts = function()
+			return require("plugins.configs.toggleterm")
 		end,
 	},
 }
