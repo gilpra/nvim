@@ -48,27 +48,12 @@ M.defaults = function()
 		end,
 	})
 
+	-- Wildcard: capabilities dan on_init untuk semua server
 	vim.lsp.config("*", {
 		capabilities = capabilities,
 		on_init = M.on_init,
 	})
-
-	vim.lsp.config("lua_ls", {
-		settings = {
-			Lua = {
-				runtime = { version = "LuaJIT" },
-				workspace = {
-					checkThirdParty = false,
-					library = {
-						vim.env.VIMRUNTIME,
-						"${3rd}/luv/library",
-					},
-				},
-				diagnostics = { globals = { "vim" } },
-				telemetry = { enable = false },
-			},
-		},
-	})
+	-- Tidak ada lagi lua_ls di sini — sudah ada di servers.lua
 end
 
 return M

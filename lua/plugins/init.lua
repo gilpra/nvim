@@ -16,13 +16,12 @@ return {
 		},
 		build = ":TSUpdate",
 		opts = function()
-			return require("plugins.configs.treesitter")
+			return require("plugins.configs.treesitter").opts
 		end,
 	},
 
 	{
 		"williamboman/mason.nvim",
-		cmd = { "Mason", "MasonInstall", "MasonUpdate" },
 		opts = {},
 	},
 
