@@ -42,9 +42,6 @@ return {
 	signature = { enabled = true },
 
 	enabled = function()
-		local ok, result = pcall(function()
-			return not vim.tbl_contains({ "markdown", "text", "gitcommit", "oil" }, vim.bo.filetype)
-		end)
-		return ok and result
+		return not vim.tbl_contains({ "text", "gitcommit", "oil" }, vim.bo.filetype)
 	end,
 }

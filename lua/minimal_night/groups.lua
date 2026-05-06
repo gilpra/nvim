@@ -109,6 +109,23 @@ M.get = function(c)
 		["@punctuation"] = { fg = c.fg },
 		["@tag"] = { fg = c.red },
 		["@tag.attribute"] = { fg = c.yellow },
+
+		-- Markdown
+		["@markup.strong"] = { fg = c.cyan, bold = true },
+		["@markup.italic"] = { fg = c.green, italic = true },
+		["@markup.strong.markdown_inline"] = { fg = c.cyan, bold = true },
+		["@markup.italic.markdown_inline"] = { fg = c.green, italic = true },
+		-- Markdown inline code (`code`)
+		["@markup.raw.markdown_inline"] = { fg = c.teal, bg = c.bg_dark },
+		-- Markdown heading
+		["@markup.heading.1.markdown"] = { fg = c.red, bold = true },
+		["@markup.heading.2.markdown"] = { fg = c.orange, bold = true },
+		["@markup.heading.3.markdown"] = { fg = c.green, bold = true },
+		["@markup.heading.4.markdown"] = { fg = c.cyan, bold = true },
+		["@markup.heading.5.markdown"] = { fg = c.blue, bold = true },
+		["@markup.heading.6.markdown"] = { fg = c.purple, bold = true },
+		-- Tanda # pada heading
+		["@markup.heading.marker.markdown"] = { fg = c.comment },
 	}
 end
 
