@@ -45,4 +45,4 @@ map("n", "<C-Up>", "<cmd>resize +2<CR>", { desc = "Pane: increase height" })
 map("n", "<C-Down>", "<cmd>resize -2<CR>", { desc = "Pane: decrease height" })
 
 -- Terminal Mode
-map("t", "jj", [[<C-\><C-n>]], { desc = "Terminal: exit to normal mode" })
+map("t", "jk", [[<C-\><C-n>]], { desc = "Terminal: exit to normal mode" })

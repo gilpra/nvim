@@ -17,6 +17,9 @@ return {
 		json = { "prettier" },
 		yaml = { "prettier" },
 		markdown = { "prettier" },
+
+		c = { "clang_format" },
+		cpp = { "clang_format" },
 	},
 
 	format_on_save = function(bufnr)
