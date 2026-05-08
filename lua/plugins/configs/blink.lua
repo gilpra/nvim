@@ -31,6 +31,7 @@ return {
 			auto_show_delay_ms = 200,
 		},
 		menu = {
+			-- auto_show = false,
 			border = "rounded",
 			draw = {
 				treesitter = { "lsp" },

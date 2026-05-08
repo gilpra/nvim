@@ -46,3 +46,10 @@ map("n", "<C-Down>", "<cmd>resize -2<CR>", { desc = "Pane: decrease height" })
 
 -- Terminal Mode
 map("t", "jk", [[<C-\><C-n>]], { desc = "Terminal: exit to normal mode" })
+
+-- Tmux
+map("n", "<C-h>", "<cmd>TmuxNavigateLeft<cr>")
+map("n", "<C-j>", "<cmd>TmuxNavigateDown<cr>")
+map("n", "<C-k>", "<cmd>TmuxNavigateUp<cr>")
+map("n", "<C-l>", "<cmd>TmuxNavigateRight<cr>")
+map("n", "<C-\\>", "<cmd>TmuxNavigatePrevious<cr>")

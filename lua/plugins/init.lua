@@ -106,21 +106,20 @@ return {
 		version = "*",
 		dependencies = {
 			{
-				"L3MON4D3/LuaSnip",
-				event = "InsertEnter",
-				dependencies = {
-					"rafamadriz/friendly-snippets",
+				"rafamadriz/friendly-snippets",
+				{
+					"L3MON4D3/LuaSnip",
+					event = "InsertEnter",
+					config = function()
+						require("luasnip.loaders.from_vscode").lazy_load()
+					end,
 				},
-				config = function()
-					require("luasnip.loaders.from_vscode").lazy_load()
-				end,
-			},
-			{
-				"windwp/nvim-autopairs",
-				event = "InsertEnter",
-				opts = {
-					check_ts = true,
-					disable_filetype = { "TelescopePrompt", "vim" },
+				{
+					"windwp/nvim-autopairs",
+					opts = {
+						check_ts = true,
+						disable_filetype = { "TelescopePrompt", "vim" },
+					},
 				},
 			},
 		},
@@ -315,12 +314,8 @@ return {
 			"TmuxNavigateDown",
 			"TmuxNavigateUp",
 			"TmuxNavigateRight",
-		},
-		keys = {
-			{ "<C-h>", "<cmd>TmuxNavigateLeft<cr>" },
-			{ "<C-j>", "<cmd>TmuxNavigateDown<cr>" },
-			{ "<C-k>", "<cmd>TmuxNavigateUp<cr>" },
-			{ "<C-l>", "<cmd>TmuxNavigateRight<cr>" },
+			"TmuxNavigatePrevious",
+			"TmuxNavigatorProcessList",
 		},
 	},
 }
