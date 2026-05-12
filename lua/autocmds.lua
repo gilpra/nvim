@@ -19,3 +19,14 @@ autocmd("TextYankPost", {
 		vim.highlight.on_yank({ higroup = "IncSearch", timeout = 150 })
 	end,
 })
+
+autocmd("FileType", {
+  pattern = {
+    "help", "checkhealth", "query"
+  },
+  callback = function(event)
+    vim.keymap.set("n", "q", function()
+      vim.cmd("close")
+    end, { buffer = event.buf, silent = true })
+  end,
+})

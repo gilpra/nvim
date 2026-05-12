@@ -27,13 +27,7 @@ o.smartindent = true
 -- Pencarian
 o.ignorecase = true
 o.smartcase = true
-
--- Perilaku Editor
-o.mouse = "a"
-
-vim.schedule(function()
-	vim.opt.clipboard = "unnamedplus"
-end)
+o.mouse = ""
 
 o.timeoutlen = 400
 o.undofile = true
@@ -42,8 +36,6 @@ o.backup = false
 o.confirm = true
 o.wrap = true
 
--- Command Completion
-o.wildmode = "longest:full,full"
-
--- Visual Tweaks
-vim.opt.fillchars = { eob = " " }
+vim.schedule(function()
+	vim.opt.clipboard = "unnamedplus"
+end)

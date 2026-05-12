@@ -14,6 +14,8 @@ map("i", "jk", "<Esc>", { desc = "Exit insert mode" })
 map("n", "<C-a>", "ggVG", { desc = "Select all text" })
 map({ "n", "v" }, "H", "^", { desc = "Jump to beginning of line" })
 map({ "n", "v" }, "L", "$", { desc = "Jump to end of line" })
+map("v", "<", "<gv", { desc = "Indent left keep visual" })
+map("v", ">", ">gv", { desc = "Indent right keep visual" })
 
 -- Hapus highlight kuning setelah pencarian dengan /
 map("n", "<leader>nh", "<cmd>nohlsearch<CR>", { desc = "Clear search highlight" })

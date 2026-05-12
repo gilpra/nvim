@@ -5,18 +5,24 @@ return {
 	-- =========================
 
 	{
-		"nvim-treesitter/nvim-treesitter",
+		"romus204/tree-sitter-manager.nvim",
+		dependencies = {},
 		event = { "BufReadPre", "BufNewFile" },
-		dependencies = {
-			{
-				"JoosepAlviste/nvim-ts-context-commentstring",
-				opts = { enable_autocmd = false },
-			},
-			"windwp/nvim-ts-autotag",
-		},
-		build = ":TSUpdate",
-		opts = function()
-			return require("plugins.configs.treesitter").opts
+		config = function()
+			require("tree-sitter-manager").setup({
+				ensure_installed = {
+					"bash",
+					"regex",
+					"html",
+					"css",
+					"javascript",
+					"typescript",
+					"tsx",
+					"python",
+				},
+				auto_install = true,
+				highlight = true,
+			})
 		end,
 	},
 

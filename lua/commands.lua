@@ -32,14 +32,3 @@ command("MasonInstallAll", function()
 		vim.cmd("MasonInstall " .. table.concat(to_install, " "))
 	end
 end, {})
-
-command("TSInstallAll", function()
-	local parser_dir = vim.fn.stdpath("data") .. "/lazy/nvim-treesitter/parser/"
-	local to_install = vim.tbl_filter(function(lang)
-		return vim.fn.filereadable(parser_dir .. lang .. ".so") == 0
-	end, require("plugins.configs.treesitter").parsers)
-
-	if #to_install > 0 then
-		vim.cmd("TSInstall " .. table.concat(to_install, " "))
-	end
-end, {})
