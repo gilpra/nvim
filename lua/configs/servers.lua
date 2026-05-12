@@ -1,5 +1,10 @@
 return {
 	lua_ls = {
+		root_markers = {
+			".git",
+			".luarc.json",
+			"stylua.toml",
+		},
 		settings = {
 			Lua = {
 				runtime = { version = "LuaJIT" },

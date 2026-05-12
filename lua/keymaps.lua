@@ -34,12 +34,6 @@ map("n", "<leader>sv", "<cmd>vsp<CR>", { desc = "Split: vertical" })
 map("n", "<leader>se", "<cmd>wincmd =<CR>", { desc = "Split: equalize size" })
 map("n", "<leader>sx", "<cmd>close<CR>", { desc = "Split: close current pane" })
 
--- Navigasi Antar Panel
-map("n", "<C-h>", "<C-w>h", { desc = "Move to left pane" })
-map("n", "<C-l>", "<C-w>l", { desc = "Move to right pane" })
-map("n", "<C-k>", "<C-w>k", { desc = "Move to upper pane" })
-map("n", "<C-j>", "<C-w>j", { desc = "Move to lower pane" })
-
 -- Resize Panel
 map("n", "<C-Left>", "<cmd>vertical resize -2<CR>", { desc = "Pane: decrease width" })
 map("n", "<C-Right>", "<cmd>vertical resize +2<CR>", { desc = "Pane: increase width" })

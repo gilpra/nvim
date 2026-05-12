@@ -1,32 +1,60 @@
 local augroup = vim.api.nvim_create_augroup("UserConfig", { clear = true })
 local autocmd = vim.api.nvim_create_autocmd
 
--- Override indentasi untuk Python
+-- Auto start Treesitter
 autocmd("FileType", {
 	group = augroup,
-	pattern = "python",
-	callback = function()
-		vim.opt_local.shiftwidth = 4 -- lebar saat tekan >> atau autoindent
-		vim.opt_local.tabstop = 4 -- lebar visual karakter Tab
-		vim.opt_local.softtabstop = 4 -- lebar Tab saat insert mode
+	callback = function(args)
+		if vim.bo[args.buf].buftype == "" then
+			pcall(vim.treesitter.start, args.buf)
+		end
 	end,
 })
 
--- Highlight teks yang baru saja di-yank (copy)
+-- Highlight yank
 autocmd("TextYankPost", {
 	group = augroup,
 	callback = function()
-		vim.highlight.on_yank({ higroup = "IncSearch", timeout = 150 })
+		vim.highlight.on_yank({
+			higroup = "IncSearch",
+			timeout = 150,
+		})
+	end,
+})
+
+-- Quick close special buffers
+autocmd("FileType", {
+	group = augroup,
+	pattern = {
+		"help",
+		"checkhealth",
+		"query",
+		"qf",
+		"lspinfo",
+	},
+	callback = function(args)
+		vim.keymap.set("n", "q", "<cmd>close<cr>", {
+			buffer = args.buf,
+			silent = true,
+		})
+	end,
+})
+
+-- Wrap for prose
+autocmd("FileType", {
+	group = augroup,
+	pattern = {
+		"markdown",
+		"text",
+	},
+	callback = function()
+		vim.opt_local.wrap = true
 	end,
 })
 
 autocmd("FileType", {
-  pattern = {
-    "help", "checkhealth", "query"
-  },
-  callback = function(event)
-    vim.keymap.set("n", "q", function()
-      vim.cmd("close")
-    end, { buffer = event.buf, silent = true })
-  end,
+	group = augroup,
+	callback = function()
+		vim.opt_local.formatoptions:remove({ "c", "r", "o" })
+	end,
 })

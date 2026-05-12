@@ -1,7 +1,7 @@
 local M = {}
 
 function M.get()
-	local c = require("minimal_night.palette").get()
+	local c = require("minimal-night.palette").get()
 
 	return {
 		normal = {

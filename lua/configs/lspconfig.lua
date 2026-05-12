@@ -53,7 +53,6 @@ M.defaults = function()
 		capabilities = capabilities,
 		on_init = M.on_init,
 	})
-	-- Tidak ada lagi lua_ls di sini — sudah ada di servers.lua
 end
 
 return M

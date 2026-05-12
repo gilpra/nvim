@@ -1,5 +1,5 @@
--- Leader Key
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
@@ -46,12 +46,10 @@ require("lazy").setup({
 				"zipPlugin",
 				"tutor",
 				"rplugin",
-				"syntax",
 				"synmenu",
 				"optwin",
 				"compiler",
 				"bugreport",
-				"ftplugin",
 			},
 		},
 	},
@@ -60,7 +58,4 @@ require("lazy").setup({
 require("options")
 require("autocmds")
 require("commands")
-
-vim.schedule(function()
-	require("keymaps")
-end)
+require("keymaps")
