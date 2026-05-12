@@ -22,26 +22,18 @@ return {
 
 	{
 		"williamboman/mason.nvim",
-		opts = {},
-	},
-
-	{
-		"williamboman/mason-lspconfig.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
-			"williamboman/mason.nvim",
-			"WhoIsSethDaniel/mason-tool-installer.nvim",
+			{
+				"williamboman/mason-lspconfig.nvim",
+				lazy = true,
+			},
 		},
+		opts = {},
 		config = function()
-			require("plugins.configs.mason").setup()
-		end,
-	},
+			require("mason").setup()
 
-	{
-		"neovim/nvim-lspconfig",
-		event = { "BufReadPre", "BufNewFile" },
-		dependencies = { "saghen/blink.cmp" },
-		config = function()
+			-- Setup LSP langsung di sini, tidak perlu plugin tambahan
 			local lsp = require("plugins.configs.lspconfig")
 			lsp.defaults()
 
