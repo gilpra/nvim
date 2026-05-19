@@ -6,7 +6,7 @@ return {
 		options = {
 			icons_enabled = false,
 			theme = function()
-				return require("minimal-night.lualine").get()
+				return require("monochrome.lualine").get()
 			end,
 
 			component_separators = { left = "│", right = "│" },
