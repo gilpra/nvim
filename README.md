@@ -4,7 +4,7 @@ This is my personal Neovim configuration, It uses lazy.nvim for plugin managemen
 
 ---
 
-## 🚀 Installation
+## Installation
 
 ### 1. Clone this config
 
@@ -26,7 +26,7 @@ Plugins will install automatically via **lazy.nvim**.
 :Lazy sync
 ```
 
-## ⚙️ Customization
+## Customization
 
 ### Options
 
