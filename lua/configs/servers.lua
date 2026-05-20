@@ -22,17 +22,7 @@ return {
 	},
 	jsonls = {},
 	bashls = {},
-	html = {
-		capabilities = {
-			textDocument = {
-				completion = {
-					completionItem = {
-						snippetSupport = false,
-					},
-				},
-			},
-		},
-	},
+	html = {},
 	emmet_ls = {
 		filetypes = {
 			"html",

@@ -1,47 +1,46 @@
-# Neovim Config
+# Neovim config — revised for Nvim 0.12.4
 
-This is my personal Neovim configuration, It uses lazy.nvim for plugin management.
+This version is adjusted for Neovim 0.12.4 and current APIs.
 
----
+## Important changes
 
-## Installation
+- `nvim-treesitter` uses the `main` branch and the new `setup()` / `install()` API.
+- Treesitter is not lazy-loaded; it uses `lazy = false` and `build = ":TSUpdate"`.
+- Treesitter parsers include the languages used by this config plus Neovim config/query parsers.
+- The old `ensure_installed` option and manual `.so` parser detection were removed.
+- Mason uses the current `mason-org` repositories.
+- `mason-lspconfig` installs the configured LSP servers, while this config explicitly calls `vim.lsp.config()` and `vim.lsp.enable()`.
+- `automatic_enable = false` avoids duplicate/implicit LSP enablement.
+- The HTML-specific `snippetSupport = false` override was removed so Blink can advertise snippet support normally.
+- Conform uses a 1-second save timeout and checks the actual file size before formatting.
+- `<leader>cf` formats the current buffer asynchronously.
 
-### 1. Clone this config
+## External tools
 
-```bash
-git clone https://github.com/garpra/nvim ~/.config/nvim
-```
+Conform does not install formatters itself. Make sure these are available through Mason/system PATH as appropriate:
 
-### 2. Start Neovim
+- `stylua`
+- `black`
+- `shfmt`
+- `prettier`
+- `clang-format`
 
-```bash
-nvim
-```
+Treesitter `main` also requires the `tree-sitter` CLI (>= 0.26.1), `curl`, `tar`, and a C compiler.
 
-Plugins will install automatically via **lazy.nvim**.
+## First launch
 
-### 3. (Optional) Sync plugins
+After replacing your config, start Neovim and run:
 
-```
+```vim
 :Lazy sync
+:checkhealth
+:checkhealth nvim-treesitter
+:checkhealth mason
+:checkhealth vim.lsp
 ```
 
-## Customization
+If parsers are missing, `nvim-treesitter` will request their installation through its `install()` API. `:TSUpdate` updates installed parsers to versions compatible with the plugin.
 
-### Options
+## Notes
 
-```
-lua/options.lua
-```
-
-### Keybindings
-
-```
-lua/keymaps.lua
-```
-
-### Plugin list
-
-```
-lua/plugins/
-```
+This config intentionally keeps the original UI, keymaps, plugins, and custom Monochrome theme rather than turning it into a distribution-style configuration.

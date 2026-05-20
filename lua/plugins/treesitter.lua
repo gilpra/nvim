@@ -1,17 +1,29 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
 	branch = "main",
-	event = { "VeryLazy" },
-	opts = {
-		ensure_installed = {
+	lazy = false,
+	build = ":TSUpdate",
+	config = function()
+		local ts = require("nvim-treesitter")
+
+		ts.setup()
+		ts.install({
 			"bash",
-			"regex",
-			"html",
+			"c",
+			"cpp",
 			"css",
+			"html",
 			"javascript",
-			"typescript",
-			"tsx",
+			"json",
+			"lua",
+			"markdown",
 			"python",
-		},
-	},
+			"query",
+			"regex",
+			"tsx",
+			"typescript",
+			"vim",
+			"vimdoc",
+		})
+	end,
 }
