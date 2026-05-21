@@ -1,5 +1,9 @@
 return {
 	"akinsho/bufferline.nvim",
+	version = "*",
+	dependencies = {
+		"nvim-tree/nvim-web-devicons",
+	},
 	event = "BufReadPre",
 	keys = {
 		{ "<Tab>", "<cmd>BufferLineCycleNext<CR>", desc = "Next buffer" },
@@ -9,13 +13,28 @@ return {
 	},
 	opts = {
 		options = {
-			always_show_bufferline = false,
-			show_close_icon = false,
-			show_buffer_close_icons = false,
+			mode = "buffers",
+
 			separator_style = "thin", -- "slant" | "slope" | "thick" | "thin"
+
+			show_buffer_close_icons = false,
+			show_close_icon = false,
+
+			always_show_bufferline = true,
 			indicator = { style = "underline" },
 			numbers = "none",
 			themable = true,
+
+			diagnostics = "nvim_lsp",
+
+			offsets = {
+				{
+					filetype = "oil",
+					text = "Oil",
+					text_align = "left",
+					separator = true,
+				},
+			},
 		},
 	},
 }

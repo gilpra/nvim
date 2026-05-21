@@ -10,6 +10,7 @@ M.on_attach = function(_, bufnr)
 	map("n", "gD", vim.lsp.buf.declaration, opts("Go to declaration"))
 	map("n", "gr", vim.lsp.buf.references, opts("Go to references"))
 	map("n", "gi", vim.lsp.buf.implementation, opts("Go to implementation"))
+
 	map("n", "K", vim.lsp.buf.hover, opts("Hover docs"))
 	map("n", "<leader>rn", vim.lsp.buf.rename, opts("Rename"))
 	map("n", "<leader>ca", vim.lsp.buf.code_action, opts("Code action"))
