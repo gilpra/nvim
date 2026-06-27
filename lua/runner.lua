@@ -8,6 +8,8 @@ function Runner()
 		cmd = "python %"
 	elseif filetype == "sh" then
 		cmd = "bash %"
+	elseif filetype == "html" then
+		cmd = "xdg-open %"
 	end
 
 	if cmd ~= nil then

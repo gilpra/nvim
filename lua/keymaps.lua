@@ -38,30 +38,4 @@ map("n", "<C-Left>", "<cmd>vertical resize -2<CR>", { desc = "Pane: decrease wid
 map("n", "<C-Right>", "<cmd>vertical resize +2<CR>", { desc = "Pane: increase width" })
 map("n", "<C-Up>", "<cmd>resize +2<CR>", { desc = "Pane: increase height" })
 map("n", "<C-Down>", "<cmd>resize -2<CR>", { desc = "Pane: decrease height" })
-
--- Terminal Mode
-map("t", "jk", [[<C-\><C-n>]], { desc = "Terminal: exit to normal mode" })
-map({ "n", "t" }, "<leader>/", "<cmd>ToggleTerm<CR>", { desc = "Terminal: toggle" })
-map({ "n", "t" }, "<leader>z", "<cmd>Zoom<CR>", { desc = "Toggle window zoom" })
-
--- Tab
-map("n", "<leader>tt", "<cmd>tabnew<CR>", {
-	desc = "New tab",
-})
-map("n", "<leader>tn", "<cmd>tabnext<CR>", {
-	desc = "Next tab",
-})
-
-map("n", "<leader>tp", "<cmd>tabprevious<CR>", {
-	desc = "Previous tab",
-})
-
-map("n", "<leader>tx", "<cmd>tabclose<CR>", {
-	desc = "Close tab",
-})
-
--- Window
-map("n", "<C-h>", "<C-w>h", { desc = "Move to left split" })
-map("n", "<C-j>", "<C-w>j", { desc = "Move to lower split" })
-map("n", "<C-k>", "<C-w>k", { desc = "Move to upper split" })
-map("n", "<C-l>", "<C-w>l", { desc = "Move to right split" })
+map("n", "<leader>z", "<cmd>Zoom<CR>", { desc = "Toggle window zoom" })
