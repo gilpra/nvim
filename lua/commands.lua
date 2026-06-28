@@ -97,11 +97,6 @@ vim.api.nvim_create_autocmd("WinClosed", {
 			if buf_to_close and vim.api.nvim_buf_is_valid(buf_to_close) then
 				pcall(vim.api.nvim_buf_delete, buf_to_close, { force = true })
 			end
-
-			if buf_to_close == terminal_buf then
-				terminal_buf = nil
-				terminal_win = nil
-			end
 		end
 
 		zoom_buf = nil

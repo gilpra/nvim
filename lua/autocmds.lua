@@ -4,24 +4,7 @@ local autocmd = vim.api.nvim_create_autocmd
 -- Start Treesitter only for filetypes with parsers configured above.
 autocmd("FileType", {
 	group = augroup,
-	pattern = {
-		"bash",
-		"c",
-		"cpp",
-		"css",
-		"html",
-		"javascript",
-		"json",
-		"lua",
-		"markdown",
-		"python",
-		"query",
-		"regex",
-		"tsx",
-		"typescript",
-		"vim",
-		"vimdoc",
-	},
+	pattern = require("language"),
 	callback = function(args)
 		if vim.bo[args.buf].buftype == "" then
 			pcall(vim.treesitter.start, args.buf)

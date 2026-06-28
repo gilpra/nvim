@@ -6,7 +6,6 @@ return {
 		{ "-", "<CMD>Oil<CR>", desc = "Open explorer" },
 	},
 	opts = {
-		default_file_explorer = true, -- gantikan netrw sepenuhnya
 		columns = {
 			"mtime",
 			"icon",
