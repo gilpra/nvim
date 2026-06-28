@@ -26,8 +26,8 @@ return {
 			json = { "prettier" },
 			yaml = { "prettier" },
 			markdown = { "prettier" },
-			c = { "clang_format" },
-			cpp = { "clang_format" },
+			c = { "clang-format" },
+			cpp = { "clang-format" },
 		},
 
 		format_on_save = false,
