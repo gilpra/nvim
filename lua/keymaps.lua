@@ -1,4 +1,9 @@
+
 local map = vim.keymap.set
+
+vim.keymap.set("n", "<leader>f", function()
+  vim.lsp.buf.format({ async = true })
+end)
 
 -- Simpan File
 map("n", "<C-s>", "<cmd>w<CR>", { desc = "Save file" })

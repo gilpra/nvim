@@ -316,27 +316,32 @@ M.get = function(c)
 
 		StatusLineNormal = {
 			fg = c.bg,
-			bg = c.blue,
+			bg = c.white,
+			bold = true,
 		},
 
 		StatusLineInsert = {
 			fg = c.bg,
-			bg = c.green,
+			bg = c.light,
+			bold = true,
 		},
 
 		StatusLineVisual = {
 			fg = c.bg,
-			bg = c.purple,
+			bg = c.muted,
+			bold = true,
 		},
 
 		StatusLineReplace = {
 			fg = c.bg,
-			bg = c.red,
+			bg = c.dim,
+			bold = true,
 		},
 
 		StatusLineCommand = {
 			fg = c.bg,
-			bg = c.yellow,
+			bg = c.comment,
+			bold = true,
 		},
 
 		------------------------------------------------------------------

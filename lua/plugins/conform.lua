@@ -30,19 +30,7 @@ return {
 			cpp = { "clang_format" },
 		},
 
-		format_on_save = function(bufnr)
-			local max_bytes = 100 * 1024
-			local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(bufnr))
-			if ok and stats and stats.size > max_bytes then
-				return
-			end
-
-			return {
-				timeout_ms = 1000,
-				lsp_format = "fallback",
-			}
-		end,
-
+		format_on_save = false,
 		notify_on_error = true,
 	},
 }
