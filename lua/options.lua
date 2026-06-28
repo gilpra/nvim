@@ -3,6 +3,7 @@ local o = vim.opt
 -- UI
 o.laststatus = 3
 o.showmode = false
+o.showtabline = 2
 o.cursorline = true
 o.number = true
 o.relativenumber = true

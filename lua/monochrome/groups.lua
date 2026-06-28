@@ -35,9 +35,20 @@ M.get = function(c)
 		StatusLine = { fg = c.fg, bg = c.bg_dark },
 		StatusLineNC = { fg = c.comment, bg = c.bg_dark },
 
-		TabLine = { fg = c.comment, bg = c.bg_dark },
-		TabLineFill = { fg = c.comment, bg = c.bg_dark },
-		TabLineSel = { fg = c.fg, bg = c.bg_highlight },
+		TabLine = {
+			fg = c.muted,
+			bg = c.bg,
+		},
+
+		TabLineSel = {
+			fg = c.white,
+			bg = c.bg,
+			bold = true,
+		},
+
+		TabLineFill = {
+			bg = c.bg,
+		},
 
 		NormalFloat = { fg = c.fg, bg = c.bg_dark },
 		FloatBorder = { fg = c.bg_highlight, bg = c.bg_dark },

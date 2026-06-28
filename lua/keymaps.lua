@@ -1,8 +1,7 @@
-
 local map = vim.keymap.set
 
 vim.keymap.set("n", "<leader>f", function()
-  vim.lsp.buf.format({ async = true })
+	vim.lsp.buf.format({ async = true })
 end)
 
 -- Simpan File
@@ -20,6 +19,10 @@ map({ "n", "v" }, "H", "^", { desc = "Jump to beginning of line" })
 map({ "n", "v" }, "L", "$", { desc = "Jump to end of line" })
 map("v", "<", "<gv", { desc = "Indent left keep visual" })
 map("v", ">", ">gv", { desc = "Indent right keep visual" })
+
+map("n", "<Tab>", "<cmd>bnext<CR>", { desc = "Next buffer" })
+map("n", "<S-Tab>", "<cmd>bprevious<CR>", { desc = "Previous buffer" })
+map("n", "<leader>bd", "<cmd>bdelete<CR>", { desc = "Delete buffer" })
 
 -- Hapus highlight kuning setelah pencarian dengan /
 map("n", "<leader>nh", "<cmd>nohlsearch<CR>", { desc = "Clear search highlight" })
