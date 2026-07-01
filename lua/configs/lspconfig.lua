@@ -16,6 +16,13 @@ M.on_attach = function(_, bufnr)
 	map("n", "<leader>ca", vim.lsp.buf.code_action, opts("Code action"))
 	map("n", "<leader>ds", vim.lsp.buf.document_symbol, opts("Document symbols"))
 	map("n", "<leader>e", vim.diagnostic.open_float, opts("Show diagnostic"))
+
+	map("n", "]d", function()
+		vim.diagnostic.jump({ count = 1, float = true })
+	end, opts("Next diagnostic"))
+	map("n", "[d", function()
+		vim.diagnostic.jump({ count = -1, float = true })
+	end, opts("Previous diagnostic"))
 end
 
 M.on_init = function(client, _)

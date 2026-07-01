@@ -1,6 +1,8 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+require('vim._core.ui2').enable({})
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 if not vim.uv.fs_stat(lazypath) then
@@ -59,7 +61,6 @@ require("options")
 require("autocmds")
 require("commands")
 require("keymaps")
-require("compiler")
-require("runner")
+require("tasks")
 require("statusline").setup()
 require("tabline").setup()

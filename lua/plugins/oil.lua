@@ -3,7 +3,7 @@ return {
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	event = "VeryLazy",
 	keys = {
-		{ "-", "<CMD>Oil<CR>", desc = "Open explorer" },
+		{ ",", "<CMD>Oil<CR>", desc = "Open explorer" },
 	},
 	opts = {
 		columns = {
@@ -36,8 +36,8 @@ return {
 			["<C-p>"] = "actions.preview",
 			["<C-c>"] = "actions.close",
 			["<C-r>"] = "actions.refresh",
-			["-"] = "actions.parent",
-			["_"] = "actions.open_cwd",
+			[","] = "actions.parent",
+			["<"] = "actions.open_cwd",
 			["`"] = "actions.cd",
 			["~"] = "actions.tcd",
 			["gs"] = "actions.change_sort",
