@@ -42,8 +42,8 @@ map("n", "<leader>se", "<cmd>wincmd =<CR>", { desc = "Split: equalize size" })
 map("n", "<leader>sx", "<cmd>close<CR>", { desc = "Split: close current pane" })
 
 -- Resize Panel
-map("n", "<C-Left>", "<cmd>vertical resize -2<CR>", { desc = "Pane: decrease width" })
-map("n", "<C-Right>", "<cmd>vertical resize +2<CR>", { desc = "Pane: increase width" })
-map("n", "<C-Up>", "<cmd>resize +2<CR>", { desc = "Pane: increase height" })
-map("n", "<C-Down>", "<cmd>resize -2<CR>", { desc = "Pane: decrease height" })
+map("n", "<C-S-h>", "<cmd>vertical resize -2<CR>", { desc = "Pane: decrease width" })
+map("n", "<C-S-l>", "<cmd>vertical resize +2<CR>", { desc = "Pane: increase width" })
+map("n", "<C-S-k>", "<cmd>resize +2<CR>", { desc = "Pane: increase height" })
+map("n", "<C-S-j>", "<cmd>resize -2<CR>", { desc = "Pane: decrease height" })
 map("n", "<leader>z", "<cmd>Zoom<CR>", { desc = "Toggle window zoom" })
