@@ -20,6 +20,9 @@ map("n", "<Tab>", "<cmd>bnext<CR>", { desc = "Next buffer" })
 map("n", "<S-Tab>", "<cmd>bprevious<CR>", { desc = "Previous buffer" })
 map("n", "<leader>bd", "<cmd>bdelete<CR>", { desc = "Delete buffer" })
 
+-- Zoom
+map("n", "<leader>z", "<cmd>Zoom<CR>", { desc = "Toggle zoom buffer" })
+
 -- Selection
 map("v", "*", [[y/\V<C-R>=escape(@", '\')<CR><CR>]], {silent = true,})
 map("n", "<leader>nh", "<cmd>nohlsearch<CR>", { desc = "Clear search highlight" })
