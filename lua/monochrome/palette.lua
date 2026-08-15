@@ -21,23 +21,23 @@ M.get = function()
 		dim = "#8A8A8A",
 
 		------------------------------------------------------------------
-		-- Syntax (Soft Colors)
+		-- Syntax (Brighter Soft Colors)
 		------------------------------------------------------------------
 
-		blue = "#AFC6E9", -- Function
-		cyan = "#A8D5CF", -- Constant
-		green = "#B7D7A8", -- String
-		yellow = "#D9C79B", -- Number / Type
-		red = "#D8A6A6", -- Error
-		purple = "#C9B3D9", -- Keyword
+		blue = "#B9D1F2", -- Function
+		cyan = "#A9E0D8", -- Constant
+		green = "#BDE59F", -- String
+		yellow = "#EBD38F", -- Number / Type
+		red = "#F0A0A0", -- Error
+		purple = "#D5B5E8", -- Keyword
 
-		orange = "#D8B89C",
-		teal = "#9EC8C3",
-		magenta = "#C9B3D9",
-		pink = "#D7B6C6",
+		orange = "#E9B58D",
+		teal = "#A0DCD2",
+		magenta = "#D5B5E8",
+		pink = "#E0B1C8",
 
-		red1 = "#C98E8E",
-		blue0 = "#9EBAD8",
+		red1 = "#DB9696",
+		blue0 = "#AEC8E8",
 	}
 end
 
