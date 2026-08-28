@@ -27,11 +27,18 @@ return {
 
 				file_ignore_patterns = {
 					"node_modules/",
-					".git/",
+					"%.git/",
 					"dist/",
 					"build/",
 					"__pycache__/",
 					"%.lock",
+				},
+			},
+
+			pickers = {
+				find_files = {
+					hidden = true,
+					no_ignore = false,
 				},
 			},
 
