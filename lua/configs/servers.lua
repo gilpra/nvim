@@ -15,14 +15,25 @@ return {
 						"${3rd}/luv/library",
 					},
 				},
-				diagnostics = { globals = { "vim" } },
-				telemetry = { enable = false },
+				diagnostics = {
+					globals = { "vim" },
+				},
+				telemetry = {
+					enable = false,
+				},
 			},
 		},
 	},
+
 	jsonls = {},
-	bashls = {},
+
+	bashls = {
+		cmd = { "bash-language-server", "start" },
+		filetypes = { "sh" },
+	},
+
 	html = {},
+
 	emmet_ls = {
 		filetypes = {
 			"html",
@@ -32,8 +43,11 @@ return {
 			"typescriptreact",
 		},
 	},
+
 	cssls = {},
+
 	ts_ls = {},
+
 	pyright = {
 		settings = {
 			python = {
@@ -43,6 +57,7 @@ return {
 			},
 		},
 	},
+
 	clangd = {
 		cmd = {
 			"clangd",
@@ -53,9 +68,13 @@ return {
 		},
 		filetypes = { "c", "cpp", "objc", "objcpp" },
 	},
+
 	rust_analyzer = {
 		cmd = { "rust-analyzer" },
 		filetypes = { "rust" },
-		root_markers = { "Cargo.toml", "Cargo.lock" },
+		root_markers = {
+			"Cargo.toml",
+			"Cargo.lock",
+		},
 	},
 }
