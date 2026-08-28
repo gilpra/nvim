@@ -1,7 +1,7 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-require('vim._core.ui2').enable({})
+require("vim._core.ui2").enable({})
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
@@ -25,7 +25,6 @@ require("lazy").setup({
 	},
 	performance = {
 		rtp = {
-			-- disable some rtp plugins
 			disabled_plugins = {
 				"2html_plugin",
 				"tohtml",
