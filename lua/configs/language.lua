@@ -1,0 +1,18 @@
+return {
+"bash",
+"c",
+"cpp",
+"css",
+"html",
+"javascript",
+"json",
+"lua",
+"markdown",
+"python",
+"query",
+"regex",
+"tsx",
+"typescript",
+"vim",
+"vimdoc",
+}

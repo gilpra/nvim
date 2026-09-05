@@ -1,11 +1,7 @@
-return {
-	"stevearc/oil.nvim",
-	dependencies = { "nvim-tree/nvim-web-devicons" },
-	event = "VeryLazy",
-	keys = {
-		{ ",", "<CMD>Oil<CR>", desc = "Open explorer" },
-	},
-	opts = {
+local M = {}
+
+function M.setup()
+	require("oil").setup({
 		columns = {
 			"mtime",
 			"icon",
@@ -24,7 +20,7 @@ return {
 			conceallevel = 3,
 			concealcursor = "nvic",
 		},
-		delete_to_trash = true, -- hapus ke trash, bukan permanent
+		delete_to_trash = true,
 		skip_confirm_for_simple_edits = false,
 		prompt_save_on_select_new_entry = true,
 		keymaps = {
@@ -60,5 +56,9 @@ return {
 				{ "name", "asc" },
 			},
 		},
-	},
-}
+	})
+
+	vim.keymap.set("n", ",", "<CMD>Oil<CR>", { desc = "Open explorer" })
+end
+
+return M

@@ -11,7 +11,6 @@ o.numberwidth = 4
 o.scrolloff = 8
 o.sidescrolloff = 8
 o.signcolumn = "yes"
-o.termguicolors = true
 o.splitbelow = true
 o.splitright = true
 o.updatetime = 300

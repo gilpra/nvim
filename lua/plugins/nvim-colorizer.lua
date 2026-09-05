@@ -1,7 +1,7 @@
-return {
-	"catgoose/nvim-colorizer.lua",
-	event = { "BufReadPre", "BufNewFile" },
-	opts = {
+local M = {}
+
+function M.setup()
+	require("colorizer").setup({
 		filetypes = {
 			"css",
 			"html",
@@ -24,5 +24,7 @@ return {
 			hsl_fn = true,
 			css = true,
 		},
-	},
-}
+	})
+end
+
+return M

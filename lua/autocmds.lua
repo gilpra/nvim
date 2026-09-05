@@ -4,7 +4,7 @@ local autocmd = vim.api.nvim_create_autocmd
 -- Start Treesitter only for normal file buffers.
 autocmd("FileType", {
 	group = augroup,
-	pattern = require("language"),
+	pattern = require("configs.language"),
 	callback = function(args)
 		if vim.bo[args.buf].buftype == "" then
 			pcall(vim.treesitter.start, args.buf)

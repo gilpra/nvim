@@ -1,25 +1,14 @@
-return {
-	"saghen/blink.cmp",
-	event = { "InsertEnter", "BufReadPre", "BufNewFile" },
-	version = "*",
-	dependencies = {
-		"rafamadriz/friendly-snippets",
-		{
-			"L3MON4D3/LuaSnip",
-			event = "InsertEnter",
-			config = function()
-				require("luasnip.loaders.from_vscode").lazy_load()
-			end,
-		},
-		{
-			"windwp/nvim-autopairs",
-			opts = {
-				check_ts = true,
-				disable_filetype = { "TelescopePrompt", "vim" },
-			},
-		},
-	},
-	opts = {
+local M = {}
+
+function M.setup()
+	require("luasnip.loaders.from_vscode").lazy_load()
+
+	require("nvim-autopairs").setup({
+		check_ts = true,
+		disable_filetype = { "TelescopePrompt", "vim" },
+	})
+
+	require("blink.cmp").setup({
 		keymap = {
 			preset = "default",
 			["<C-Space>"] = { "show", "show_documentation", "hide_documentation" },
@@ -46,8 +35,6 @@ return {
 			default = { "lsp", "path", "buffer", "snippets" },
 		},
 
-		-- Completion untuk command-line (:) menggantikan wildmenu bawaan,
-		-- pakai UI yang sama dengan menu completion insert mode.
 		cmdline = {
 			enabled = true,
 			sources = { "cmdline" },
@@ -59,7 +46,6 @@ return {
 				auto_show_delay_ms = 200,
 			},
 			menu = {
-				-- auto_show = false,
 				border = "rounded",
 				draw = {
 					treesitter = { "lsp" },
@@ -73,5 +59,7 @@ return {
 		enabled = function()
 			return not vim.tbl_contains({ "markdown", "text", "gitcommit", "oil" }, vim.bo.filetype)
 		end,
-	},
-}
+	})
+end
+
+return M

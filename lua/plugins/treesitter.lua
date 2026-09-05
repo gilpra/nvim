@@ -1,12 +1,10 @@
-return {
-	"nvim-treesitter/nvim-treesitter",
-	branch = "main",
-	lazy = false,
-	build = ":TSUpdate",
-	config = function()
-		local ts = require("nvim-treesitter")
+local M = {}
 
-		ts.setup()
-		ts.install(require("language"))
-	end,
-}
+function M.setup()
+	local ts = require("nvim-treesitter")
+
+	ts.setup()
+	ts.install(require("configs.language"))
+end
+
+return M

@@ -1,7 +1,7 @@
-return {
-	"lewis6991/gitsigns.nvim",
-	event = "BufReadPost",
-	opts = {
+local M = {}
+
+function M.setup()
+	require("gitsigns").setup({
 		signs = {
 			add = { text = "▎" },
 			change = { text = "▎" },
@@ -38,16 +38,13 @@ return {
 				end
 			end, "Git: hunk sebelumnya")
 
-			-- Stage = tandai perubahan ini siap untuk di-commit
 			map("n", "<leader>hs", gs.stage_hunk, "Git: stage hunk")
-			-- Reset = batalkan perubahan di hunk ini, kembalikan ke versi git
 			map("n", "<leader>hr", gs.reset_hunk, "Git: reset hunk")
-			-- Undo stage = batalkan staging (kebalikan dari stage)
 			map("n", "<leader>hu", gs.undo_stage_hunk, "Git: undo stage hunk")
-			-- Preview = lihat diff perubahan di floating window kecil
 			map("n", "<leader>hp", gs.preview_hunk, "Git: preview hunk")
-			-- Blame = tampilkan siapa yang menulis baris ini, kapan, dan pesan commitnya
 			map("n", "<leader>hb", gs.blame_line, "Git: blame baris ini")
 		end,
-	},
-}
+	})
+end
+
+return M
