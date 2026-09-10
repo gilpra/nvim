@@ -35,6 +35,7 @@ vim.pack.add({
     { src = "https://github.com/stevearc/conform.nvim" },
     { src = "https://github.com/lewis6991/gitsigns.nvim" },
     { src = "https://github.com/christoomey/vim-tmux-navigator" },
+    { src = "https://github.com/nvim-mini/mini.pairs",                    version = "stable" },
 })
 
 -- Configure plugins
@@ -45,6 +46,7 @@ require("plugins.blink")
 require("plugins.mason")
 require("plugins.conform")
 require("plugins.gitsigns")
+require("plugins.mini")
 
 require("lsp")
 require("options")
