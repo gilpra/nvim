@@ -46,19 +46,8 @@ autocmd("TermClose", {
 	group = augroup,
 	callback = function(args)
 		vim.schedule(function()
-			if vim.api.nvim_buf_is_valid(args.buf)
-				and vim.api.nvim_get_current_buf() == args.buf
-			then
-				vim.api.nvim_feedkeys(
-					vim.api.nvim_replace_termcodes(
-						"<C-\\><C-N>",
-						true,
-						false,
-						true
-					),
-					"n",
-					false
-				)
+			if vim.api.nvim_buf_is_valid(args.buf) and vim.api.nvim_get_current_buf() == args.buf then
+				vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, false, true), "n", false)
 			end
 		end)
 	end,

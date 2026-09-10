@@ -6,25 +6,17 @@ function M.render()
 
 	for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
 		if vim.api.nvim_buf_is_loaded(bufnr) and vim.bo[bufnr].buflisted then
-			local name = vim.fn.fnamemodify(
-				vim.api.nvim_buf_get_name(bufnr),
-				":t"
-			)
+			local name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), ":t")
 
 			if name == "" then
 				name = "[No Name]"
 			end
 
-			local highlight = bufnr == current
-					and "%#TabLineSel#"
-				or "%#TabLine#"
+			local highlight = bufnr == current and "%#TabLineSel#" or "%#TabLine#"
 
 			local modified = vim.bo[bufnr].modified and " ●" or ""
 
-			table.insert(
-				buffers,
-				highlight .. " " .. name .. modified .. " "
-			)
+			table.insert(buffers, highlight .. " " .. name .. modified .. " ")
 		end
 	end
 

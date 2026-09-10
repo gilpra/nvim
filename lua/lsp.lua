@@ -60,12 +60,11 @@ setup_keymaps()
 
 -- Shared settings for every LSP server.
 vim.lsp.config("*", {
-    capabilities = capabilities,
+	capabilities = capabilities,
 })
 
 -- Server-specific settings.
 for name, config in pairs(servers) do
-    vim.lsp.config(name, config)
-    vim.lsp.enable(name)
+	vim.lsp.config(name, config)
+	vim.lsp.enable(name)
 end
-
