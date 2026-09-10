@@ -34,6 +34,7 @@ vim.pack.add({
     { src = "https://github.com/williamboman/mason.nvim" },
     { src = "https://github.com/stevearc/conform.nvim" },
     { src = "https://github.com/lewis6991/gitsigns.nvim" },
+    { src = "https://github.com/christoomey/vim-tmux-navigator" },
 })
 
 -- Configure plugins
