@@ -32,6 +32,7 @@ vim.pack.add({
 	{ src = "https://github.com/saghen/blink.cmp", version = "v1" },
 	{ src = "https://github.com/rafamadriz/friendly-snippets" },
 	{ src = "https://github.com/L3MON4D3/LuaSnip" },
+    { src = "https://github.com/neovim/nvim-lspconfig" },
 })
 
 -- Configure plugins
@@ -40,6 +41,7 @@ require("plugins.treesitter")
 require("plugins.telescope")
 require("plugins.blink")
 
+require("lsp")
 require("options")
 require("autocmds")
 require("commands")
