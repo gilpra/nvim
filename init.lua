@@ -33,6 +33,7 @@ vim.pack.add({
     { src = "https://github.com/neovim/nvim-lspconfig" },
     { src = "https://github.com/williamboman/mason.nvim" },
     { src = "https://github.com/stevearc/conform.nvim" },
+    { src = "https://github.com/lewis6991/gitsigns.nvim" },
 })
 
 -- Configure plugins
@@ -42,6 +43,7 @@ require("plugins.telescope")
 require("plugins.blink")
 require("plugins.mason")
 require("plugins.conform")
+require("plugins.gitsigns")
 
 require("lsp")
 require("options")
