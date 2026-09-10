@@ -37,6 +37,7 @@ vim.pack.add({
     { src = "https://github.com/christoomey/vim-tmux-navigator" },
     { src = "https://github.com/nvim-mini/mini.pairs",                    version = "stable" },
     { src = "https://github.com/nvim-mini/mini.ai",                       version = "stable" },
+    { src = "https://github.com/nvim-mini/mini.surround",                 version = "stable" },
 })
 
 -- Configure plugins
