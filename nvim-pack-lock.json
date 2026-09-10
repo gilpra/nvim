@@ -1,5 +1,10 @@
 {
   "plugins": {
+    "nvim-treesitter": {
+      "rev": "d4d59cb369da46b95699bd2200efbcffc6dadb3b",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter",
+      "version": "'main'"
+    },
     "oil.nvim": {
       "rev": "b73018b75affd13fa38e2fc94ef753b465f770d7",
       "src": "https://github.com/stevearc/oil.nvim"
