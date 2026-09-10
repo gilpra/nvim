@@ -33,6 +33,7 @@ vim.pack.add({
 	{ src = "https://github.com/rafamadriz/friendly-snippets" },
 	{ src = "https://github.com/L3MON4D3/LuaSnip" },
     { src = "https://github.com/neovim/nvim-lspconfig" },
+	{ src = "https://github.com/williamboman/mason.nvim" },
 })
 
 -- Configure plugins
@@ -40,6 +41,7 @@ require("plugins.oil")
 require("plugins.treesitter")
 require("plugins.telescope")
 require("plugins.blink")
+require("plugins.mason")
 
 require("lsp")
 require("options")
