@@ -4,7 +4,7 @@ local autocmd = vim.api.nvim_create_autocmd
 -- Start Treesitter only for normal file buffers.
 autocmd("FileType", {
 	group = augroup,
-	pattern = require("language"),
+	pattern = require("configs.language"),
 	callback = function(args)
 		if vim.bo[args.buf].buftype == "" then
 			pcall(vim.treesitter.start, args.buf)
@@ -42,8 +42,6 @@ autocmd("FileType", {
 })
 
 -- Leave Terminal mode when the terminal process exits.
--- This keeps the finished runner open and prevents the next keypress
--- from being interpreted as terminal input.
 autocmd("TermClose", {
 	group = augroup,
 	callback = function(args)
