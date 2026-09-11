@@ -31,7 +31,7 @@ o.inccommand = "split"
 
 -- UX
 o.mouse = "a"
-o.timeoutlen = 400
+o.timeoutlen = 1000
 o.completeopt = "menu,menuone,noselect"
 
 -- Files
