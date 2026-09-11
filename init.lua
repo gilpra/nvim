@@ -22,6 +22,7 @@ vim.pack.add({
     { src = "https://github.com/nvim-mini/mini.ai",               version = "stable" },
     { src = "https://github.com/nvim-mini/mini.surround",         version = "stable" },
     { src = 'https://github.com/nvim-mini/mini.pick',             version = 'stable' },
+    { src = 'https://github.com/nvim-mini/mini.icons',            version = 'stable' },
 })
 
 -- Configure plugins

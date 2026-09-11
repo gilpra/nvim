@@ -9,6 +9,9 @@ require("mini.ai").setup()
 -- Enhanced surround
 require("mini.surround").setup()
 
+-- Icon
+require('mini.icons').setup()
+
 -- Picker
 require("mini.pick").setup({
     options = {
