@@ -21,7 +21,24 @@ M.get = function()
 		dim = "#8A8A8A",
 
 		------------------------------------------------------------------
-		-- Syntax (Brighter Soft Colors)
+		-- Syntax (Elflord-inspired)
+		-- Only used by syntax/Treesitter groups.
+		------------------------------------------------------------------
+
+		syntax_comment = "#8EA8D8",
+		syntax_constant = "#D38FD0",
+		syntax_identifier = "#78D0D0",
+		syntax_function = "#F0F0F0",
+		syntax_statement = "#CF6666",
+		syntax_repeat = "#E0E0E0",
+		syntax_type = "#8FD08F",
+		syntax_preproc = "#D79AD7",
+		syntax_special = "#D96B6B",
+		syntax_operator = "#D96B6B",
+
+		------------------------------------------------------------------
+		-- Existing semantic colors
+		-- Kept unchanged for non-syntax UI/diagnostic components.
 		------------------------------------------------------------------
 
 		blue = "#B9D1F2", -- Function

@@ -66,118 +66,124 @@ M.get = function(c)
 		PmenuThumb = { bg = c.comment },
 
 		------------------------------------------------------------------
-		-- Syntax
+		-- Syntax (Elflord-inspired)
 		------------------------------------------------------------------
 
 		Comment = {
-			fg = c.comment,
+			fg = c.syntax_comment,
 			italic = true,
 		},
 
 		Constant = {
-			fg = c.cyan,
+			fg = c.syntax_constant,
 		},
 
 		String = {
-			fg = c.green,
+			fg = c.syntax_constant,
 		},
 
 		Character = {
-			fg = c.green,
+			fg = c.syntax_constant,
 		},
 
 		Number = {
-			fg = c.yellow,
+			fg = c.syntax_constant,
 		},
 
 		Float = {
-			fg = c.yellow,
+			fg = c.syntax_constant,
 		},
 
 		Boolean = {
-			fg = c.yellow,
+			fg = c.syntax_constant,
 		},
 
 		Identifier = {
-			fg = c.fg,
+			fg = c.syntax_identifier,
 		},
 
 		Function = {
-			fg = c.blue,
-			bold = true,
+			fg = c.syntax_function,
 		},
 
 		Statement = {
-			fg = c.purple,
+			fg = c.syntax_statement,
+			bold = true,
 		},
 
 		Keyword = {
-			fg = c.purple,
-			italic = true,
+			fg = c.syntax_statement,
+			bold = true,
 		},
 
 		Conditional = {
-			fg = c.purple,
+			fg = c.syntax_repeat,
 		},
 
 		Repeat = {
-			fg = c.purple,
+			fg = c.syntax_repeat,
 		},
 
 		Label = {
-			fg = c.purple,
+			fg = c.syntax_statement,
+			bold = true,
 		},
 
 		Exception = {
-			fg = c.red,
+			fg = c.syntax_statement,
+			bold = true,
 		},
 
 		Operator = {
-			fg = c.fg,
+			fg = c.syntax_operator,
 		},
 
 		Type = {
-			fg = c.yellow,
+			fg = c.syntax_type,
+			bold = true,
 		},
 
 		StorageClass = {
-			fg = c.yellow,
+			fg = c.syntax_type,
+			bold = true,
 		},
 
 		Structure = {
-			fg = c.yellow,
+			fg = c.syntax_type,
+			bold = true,
 		},
 
 		Typedef = {
-			fg = c.yellow,
+			fg = c.syntax_type,
+			bold = true,
 		},
 
 		PreProc = {
-			fg = c.orange,
+			fg = c.syntax_preproc,
 		},
 
 		Include = {
-			fg = c.orange,
+			fg = c.syntax_preproc,
 		},
 
 		Define = {
-			fg = c.orange,
+			fg = c.syntax_preproc,
 		},
 
 		Macro = {
-			fg = c.orange,
+			fg = c.syntax_preproc,
 		},
 
 		Special = {
-			fg = c.teal,
+			fg = c.syntax_special,
 		},
 
 		SpecialChar = {
-			fg = c.teal,
+			fg = c.syntax_special,
 		},
 
 		Delimiter = {
-			fg = c.fg,
+			fg = c.syntax_special,
 		},
 
 		Todo = {
@@ -365,11 +371,12 @@ M.get = function(c)
 		["@boolean"] = { link = "Boolean" },
 		["@function"] = { link = "Function" },
 		["@keyword"] = { link = "Keyword" },
-		["@variable"] = { fg = c.fg },
+		["@variable"] = { link = "Identifier" },
 		["@type"] = { link = "Type" },
-		["@property"] = { fg = c.fg },
-		["@punctuation"] = { fg = c.fg },
-		["@tag"] = { fg = c.orange },
+		["@property"] = { link = "Identifier" },
+		["@operator"] = { link = "Operator" },
+		["@punctuation"] = { link = "Delimiter" },
+		["@tag"] = { link = "Special" },
 
 		------------------------------------------------------------------
 		-- Markdown
