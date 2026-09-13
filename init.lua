@@ -18,11 +18,7 @@ vim.pack.add({
     { src = "https://github.com/stevearc/conform.nvim" },
     { src = "https://github.com/lewis6991/gitsigns.nvim" },
     { src = "https://github.com/christoomey/vim-tmux-navigator" },
-    { src = "https://github.com/nvim-mini/mini.pairs",            version = "stable" },
-    { src = "https://github.com/nvim-mini/mini.ai",               version = "stable" },
-    { src = "https://github.com/nvim-mini/mini.surround",         version = "stable" },
-    { src = 'https://github.com/nvim-mini/mini.pick',             version = 'stable' },
-    { src = 'https://github.com/nvim-mini/mini.icons',            version = 'stable' },
+    { src = 'https://github.com/nvim-mini/mini.nvim',             version = 'stable' },
 })
 
 -- Configure plugins
