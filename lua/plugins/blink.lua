@@ -1,5 +1,3 @@
-require("luasnip.loaders.from_vscode").lazy_load()
-
 require("blink.cmp").setup({
 	keymap = {
 		preset = "default",
@@ -15,7 +13,7 @@ require("blink.cmp").setup({
 	},
 
 	snippets = {
-		preset = "luasnip",
+		preset = "mini_snippets",
 	},
 
 	sources = {
