@@ -42,6 +42,10 @@
     "vim-tmux-navigator": {
       "rev": "e41c431a0c7b7388ae7ba341f01a0d217eb3a432",
       "src": "https://github.com/christoomey/vim-tmux-navigator"
+    },
+    "yoruakari.nvim": {
+      "rev": "723d3985f5f0df0b6e282932109746037febfebb",
+      "src": "https://github.com/gilpra/yoruakari.nvim"
     }
   }
 }

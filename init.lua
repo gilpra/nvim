@@ -3,11 +3,9 @@ vim.g.maplocalleader = " "
 
 require("vim._core.ui2").enable({})
 
--- Local theme
-vim.cmd.colorscheme("monochrome")
-
 -- Instal plugin with vim.pack
 vim.pack.add({
+    { src = "https://github.com/gilpra/yoruakari.nvim" },
     { src = "https://github.com/stevearc/oil.nvim" },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
     { src = "https://github.com/saghen/blink.cmp",                version = "v1" },
@@ -19,6 +17,9 @@ vim.pack.add({
     { src = "https://github.com/christoomey/vim-tmux-navigator" },
     { src = 'https://github.com/nvim-mini/mini.nvim',             version = 'stable' },
 })
+
+-- Set default theme
+vim.cmd.colorscheme("yoruakari")
 
 -- Configure plugins
 require("plugins.oil")
