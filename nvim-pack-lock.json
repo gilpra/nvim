@@ -17,6 +17,10 @@
       "rev": "f2421c550618d257048afa650413d9e542ddbe67",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
+    "live-server.nvim": {
+      "rev": "39c52a1b4d9a5661bfaccd9aa29d12576a8f4772",
+      "src": "https://forge.barrettruth.com/barrettruth/live-server.nvim"
+    },
     "mason.nvim": {
       "rev": "2a6940af80375532e5e9e7c1f2fc6319a1b7a69d",
       "src": "https://github.com/williamboman/mason.nvim"
