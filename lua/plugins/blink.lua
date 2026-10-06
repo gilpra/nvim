@@ -38,6 +38,24 @@ require("blink.cmp").setup({
 		},
 	},
 
+    fuzzy = {
+        sorts = {
+            function(a, b)
+                local snippet_kind = require("blink.cmp.types").CompletionItemKind.Snippet
+
+                local a_is_snippet = a.kind == snippet_kind
+                local b_is_snippet = b.kind == snippet_kind
+
+                if a_is_snippet ~= b_is_snippet then
+                    return a_is_snippet
+                end
+            end,
+
+            "score",
+            "sort_text",
+        },
+    },
+
 	signature = { enabled = true },
 
 	enabled = function()
