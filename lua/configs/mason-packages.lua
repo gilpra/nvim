@@ -8,6 +8,7 @@ return {
 	"css-lsp",
 	"typescript-language-server",
 	"pyright",
+    "jdtls",
 
 	-- Formatters
 	"stylua",

@@ -15,4 +15,6 @@ return {
 	"typescript",
 	"vim",
 	"vimdoc",
+    "java",
+    "rust"
 }
