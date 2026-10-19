@@ -10,15 +10,15 @@
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "friendly-snippets": {
-      "rev": "a5a73e586521fe5c12d751ad81a0db67649a94ed",
+      "rev": "b4d01b0fdf3c9a549961c2f9ffe8dc09be166219",
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "gitsigns.nvim": {
-      "rev": "f2421c550618d257048afa650413d9e542ddbe67",
+      "rev": "fd780920613e541cbdfac41bf711583ed49f9249",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "live-server.nvim": {
-      "rev": "39c52a1b4d9a5661bfaccd9aa29d12576a8f4772",
+      "rev": "c0716740b97046e18f4002224781984b2040eac9",
       "src": "https://forge.barrettruth.com/barrettruth/live-server.nvim"
     },
     "mason.nvim": {
@@ -31,16 +31,16 @@
       "version": "'stable'"
     },
     "nvim-lspconfig": {
-      "rev": "ac9d2f7c4757db6320cab6697fe73e5e8adb2457",
+      "rev": "45a3a444b710511c39abca3b60bb6e23a21e3de5",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter": {
-      "rev": "d4d59cb369da46b95699bd2200efbcffc6dadb3b",
+      "rev": "d3e4a28b63961ba972b0945d66c73b6eec969953",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
     "oil.nvim": {
-      "rev": "b73018b75affd13fa38e2fc94ef753b465f770d7",
+      "rev": "d3733d933833a0e59b813ecec99341527adf0c28",
       "src": "https://github.com/stevearc/oil.nvim"
     },
     "vim-tmux-navigator": {
@@ -48,7 +48,7 @@
       "src": "https://github.com/christoomey/vim-tmux-navigator"
     },
     "yoruakari.nvim": {
-      "rev": "723d3985f5f0df0b6e282932109746037febfebb",
+      "rev": "5b0a8d70a35bf13f2bacba236086d4358ff28233",
       "src": "https://github.com/gilpra/yoruakari.nvim"
     }
   }
