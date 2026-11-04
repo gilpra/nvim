@@ -7,7 +7,7 @@ require("vim._core.ui2").enable({})
 vim.pack.add({
     { src = "https://github.com/gilpra/yoruakari.nvim" },
     { src = "https://github.com/stevearc/oil.nvim" },
-    { src = "https://github.com/nvim-treesitter/nvim-treesitter",        version = "main" },
+    { src = "https://github.com/romus204/tree-sitter-manager.nvim" },
     { src = "https://github.com/rafamadriz/friendly-snippets" },
     { src = "https://github.com/saghen/blink.cmp",                       version = "v1" },
     { src = "https://github.com/neovim/nvim-lspconfig" },
