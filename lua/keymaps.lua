@@ -26,6 +26,7 @@ map("n", "<leader>z", "<cmd>Zoom<CR>", { desc = "Toggle zoom buffer" })
 -- Selection
 map("v", "*", [[y/\V<C-R>=escape(@", '\')<CR><CR>]], { silent = true })
 map("n", "<leader>nh", "<cmd>nohlsearch<CR>", { desc = "Clear search highlight" })
+map("x", "<leader>r", "<Cmd>ReplaceSelection<CR>", { desc = "Replace selection" })
 
 -- Edit
 map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move line down" })
