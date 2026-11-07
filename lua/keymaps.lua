@@ -6,6 +6,7 @@ map({ "i", "x", "s" }, "<C-s>", "<cmd>w<CR><Esc>", { desc = "Save file" })
 
 -- Mode Switching
 map("n", ";", ":", { desc = "Enter command mode" })
+map("n", "<leader>c", "<cmd>Compile<CR>", { desc = "Enter Compile mode" })
 
 -- jk di insert mode = tekan Escape (keluar ke normal mode)
 map("i", "jk", "<Esc>", { desc = "Exit insert mode" })

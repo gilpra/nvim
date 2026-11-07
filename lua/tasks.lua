@@ -1,201 +1,211 @@
-local M = {
-    -- Runner window
-    height = 12,
+local config = {
+    height = 15,
 
-    -- Interpreted languages
-    run = {
-        python = { "python" },
-        lua = { "lua" },
-        javascript = { "node" },
-        sh = { "bash" },
-        bash = { "bash" },
-    },
+    languages = {
+        -- Interpreted languages
+        python = { cmd = "python {file}" },
+        lua = { cmd = "lua {file}" },
+        javascript = { cmd = "node {file}" },
+        sh = { cmd = "bash {file}" },
+        bash = { cmd = "bash {file}" },
 
-    -- Compiled languages
-    compile = {
-        c = "gcc {file} -o {output}",
-        cpp = "g++ {file} -o {output}",
+        -- Compiled languages
+        c = { cmd = "gcc {file} -o {output}", compile = true },
+        cpp = { cmd = "g++ {file} -o {output}", compile = true },
     },
 }
 
-local state = {
-    win = nil,
+local runner = {
     buf = nil,
+    win = nil,
     job = nil,
 }
 
--- Save the current file
-local function save_file()
-    local buf = vim.api.nvim_get_current_buf()
-    local file = vim.api.nvim_buf_get_name(buf)
+local api = vim.api
+local fn = vim.fn
+local levels = vim.log.levels
 
-    if file == "" or vim.bo[buf].buftype ~= "" then
-        vim.notify("Please open a normal file first.", vim.log.levels.WARN)
-        return nil
-    end
+-- Scripts
+local RUN_SCRIPT = [[
+printf '$%s\n' "$1"
+exec bash -c "$1"
+]]
 
-    if vim.bo[buf].modified then
-        local ok, err = pcall(function()
-            vim.api.nvim_buf_call(buf, function()
-                vim.cmd.write()
-            end)
-        end)
+local COMPILE_SCRIPT = [[
+printf '$%s\n' "$1"
 
-        if not ok then
-            vim.notify("Failed to save file: " .. err, vim.log.levels.ERROR)
-            return nil
-        end
-    end
+start=${EPOCHREALTIME/./}
+bash -c "$1"
+status=$?
+elapsed=$(( (${EPOCHREALTIME/./} - start + 5000) / 10000 ))
 
-    return vim.fn.fnamemodify(file, ":p")
+if (( status == 0 )); then
+    printf 'Compilation finished in %d,%02ds\n\n' $((elapsed / 100)) $((elapsed % 100))
+    exec "./$2"
+fi
+
+printf 'Compilation failed in %d,%02ds\n\n' $((elapsed / 100)) $((elapsed % 100))
+exit "$status"
+]]
+
+-- Utilities
+local function notify(message, level)
+    vim.notify(message, level or levels.INFO)
 end
 
--- Create the runner buffer
-local function create_runner()
-    if state.buf and vim.api.nvim_buf_is_valid(state.buf) then
-        vim.api.nvim_buf_delete(state.buf, { force = true })
-    end
-
-    local existing = vim.fn.bufnr("runner")
-
-    if existing > 0 and vim.api.nvim_buf_is_valid(existing) then
-        if vim.bo[existing].buftype ~= "terminal" then
-            vim.notify(
-                "Buffer 'runner' already exists and is not a terminal.",
-                vim.log.levels.ERROR
-            )
-            return nil
-        end
-
-        vim.api.nvim_buf_delete(existing, { force = true })
-    end
-
-    local buf = vim.api.nvim_create_buf(false, true)
-    vim.api.nvim_buf_set_name(buf, "runner")
-
-    vim.bo[buf].buflisted = false
-    vim.bo[buf].swapfile = false
-    vim.bo[buf].bufhidden = "hide"
-    vim.bo[buf].filetype = "runner"
-
-    state.buf = buf
-    return buf
+local function valid_buf(buf)
+    return buf and api.nvim_buf_is_valid(buf)
 end
 
--- Open the runner window
-local function open_runner(buf)
-    if not state.win or not vim.api.nvim_win_is_valid(state.win) then
-        vim.cmd("botright " .. M.height .. "split")
-        state.win = vim.api.nvim_get_current_win()
-    end
-
-    vim.api.nvim_win_set_buf(state.win, buf)
-    vim.api.nvim_set_current_win(state.win)
+local function valid_win(win)
+    return win and api.nvim_win_is_valid(win)
 end
 
--- Stop the previous process
-local function stop_runner()
-    if state.job then
-        vim.fn.jobstop(state.job)
-        state.job = nil
-    end
-end
+-- Source file
+local function get_source()
+    local buf = api.nvim_get_current_buf()
 
--- Start a command in the runner terminal
-local function start_runner(command, cwd)
-    stop_runner()
-
-    local buf = create_runner()
-    if not buf then
+    if vim.bo[buf].buftype ~= "" then
+        notify("Please open a normal file first.", levels.WARN)
         return
     end
 
-    open_runner(buf)
+    local file = api.nvim_buf_get_name(buf)
+    local filetype = vim.bo[buf].filetype
 
-    local job = vim.fn.jobstart(command, {
+    if file == "" then
+        notify("No file name available.", levels.WARN)
+        return
+    end
+
+    local ok, err = pcall(api.nvim_buf_call, buf, function()
+        vim.cmd("update")
+    end)
+
+    if not ok then
+        notify("Failed to save file: " .. err, levels.ERROR)
+        return
+    end
+
+    return fn.fnamemodify(file, ":p"), filetype
+end
+
+-- Runner
+local function stop_runner()
+    if runner.job then
+        pcall(fn.jobstop, runner.job)
+        runner.job = nil
+    end
+end
+
+local function open_runner()
+    if valid_win(runner.win) then
+        api.nvim_set_current_win(runner.win)
+    else
+        vim.cmd(("botright %dsplit"):format(config.height))
+        runner.win = api.nvim_get_current_win()
+    end
+
+    -- Replace the previous terminal buffer
+    local old_buf = runner.buf
+    local buf = api.nvim_create_buf(false, true)
+
+    runner.buf = buf
+    api.nvim_win_set_buf(runner.win, buf)
+
+    if valid_buf(old_buf) then
+        pcall(api.nvim_buf_delete, old_buf, { force = true })
+    end
+
+    return buf
+end
+
+local function start_runner(script, args, cwd)
+    stop_runner()
+
+    local buf = open_runner()
+    local cmd = { "bash", "-c", script, "runner" }
+
+    vim.list_extend(cmd, args)
+
+    local ok, job = pcall(fn.jobstart, cmd, {
         term = true,
         cwd = cwd,
 
         on_exit = function(job_id)
-            if state.job == job_id then
-                state.job = nil
+            if runner.job == job_id then
+                runner.job = nil
             end
         end,
     })
 
-    if job <= 0 then
-        state.job = nil
-        vim.notify("Failed to start runner.", vim.log.levels.ERROR)
+    if not ok or not job or job <= 0 then
+        notify("Failed to start runner.", levels.ERROR)
         return
     end
 
-    state.job = job
+    runner.job = job
 
-    -- Restore the custom name and filetype
-    vim.api.nvim_buf_set_name(buf, "runner")
+    -- Rename the terminal buffer
+    pcall(api.nvim_buf_set_name, buf, "runner")
     vim.bo[buf].filetype = "runner"
 
-    vim.cmd.startinsert()
+    vim.cmd("startinsert")
 end
 
--- Run interpreted languages
-local function run_interpreted(file, filetype, cwd)
-    local command = vim.deepcopy(M.run[filetype])
-    table.insert(command, file)
+-- Execution
+local function execute_language(file, language, cwd)
+    local filename = fn.fnamemodify(file, ":t")
+    local output = fn.fnamemodify(file, ":t:r")
 
-    start_runner(command, cwd)
-end
-
--- Compile and run compiled languages
-local function compile_and_run(file, filetype, cwd)
-    local template = M.compile[filetype]
-    local source = vim.fn.fnamemodify(file, ":t")
-    local output = vim.fn.fnamemodify(file, ":t:r")
-
-    -- Show actual filenames in the prompt
-    local default = template
-        :gsub("{file}", source)
-        :gsub("{output}", output)
+    local command = language.cmd:gsub("{(%w+)}", {
+        file = fn.shellescape(filename),
+        output = fn.shellescape(output),
+    })
 
     vim.ui.input({
-        prompt = "Compile command: ",
-        default = default,
+        prompt = language.compile and "Compile command: " or "Run command: ",
+        default = command,
     }, function(input)
-        if not input or vim.trim(input) == "" then
+        input = input and vim.trim(input)
+
+        if not input or input == "" then
             return
         end
 
-        -- Run the binary only if compilation succeeds
-        start_runner({
-            "bash",
-            "-c",
-            input .. " && exec " .. vim.fn.shellescape("./" .. output),
-        }, cwd)
+        if language.compile then
+            start_runner(COMPILE_SCRIPT, { input, output }, cwd)
+        else
+            start_runner(RUN_SCRIPT, { input }, cwd)
+        end
     end)
 end
 
--- Main function
-local function run_file()
-    local file = save_file()
+-- Main
+local function compile_current_file()
+    local file, filetype = get_source()
+
     if not file then
         return
     end
 
-    local filetype = vim.bo.filetype
-    local cwd = vim.fn.fnamemodify(file, ":h")
+    local language = config.languages[filetype]
 
-    if M.run[filetype] then
-        run_interpreted(file, filetype, cwd)
-    elseif M.compile[filetype] then
-        compile_and_run(file, filetype, cwd)
-    else
-        vim.notify(
-            "No run/compile command configured for: " .. filetype,
-            vim.log.levels.WARN
+    if not language then
+        notify(
+            "No execution command configured for: " .. filetype,
+            levels.WARN
         )
+        return
     end
+
+    local cwd = fn.fnamemodify(file, ":h")
+
+    execute_language(file, language, cwd)
 end
 
-vim.keymap.set("n", "<leader>r", run_file, {
-    desc = "Compile and run file",
+-- Command
+api.nvim_create_user_command("Compile", compile_current_file, {
+    desc = "Compile and run current file",
+    force = true,
 })
