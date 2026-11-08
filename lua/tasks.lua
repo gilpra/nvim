@@ -3,31 +3,15 @@ local config = {
 
     languages = {
         -- Interpreted languages
-        python = {
-            cmd = "python {file}",
-        },
-        lua = {
-            cmd = "lua {file}",
-        },
-        javascript = {
-            cmd = "node {file}",
-        },
-        sh = {
-            cmd = "bash {file}",
-        },
-        bash = {
-            cmd = "bash {file}",
-        },
+        python = { cmd = "python {file}" },
+        lua = { cmd = "lua {file}" },
+        javascript = { cmd = "node {file}" },
+        sh = { cmd = "bash {file}" },
+        bash = { cmd = "bash {file}" },
 
         -- Compiled languages
-        c = {
-            cmd = "gcc {file} -o {output}",
-            compile = true,
-        },
-        cpp = {
-            cmd = "g++ {file} -o {output}",
-            compile = true,
-        },
+        c = { cmd = "gcc {file} -o {output}", compile = true },
+        cpp = { cmd = "g++ {file} -o {output}", compile = true },
     },
 
     -- Keymaps disabled in runner buffer

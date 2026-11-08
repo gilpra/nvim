@@ -1,18 +1,18 @@
 return {
-	-- LSP
-	"lua-language-server",
-	"json-lsp",
-	"bash-language-server",
-	"html-lsp",
-	"emmet-ls",
-	"css-lsp",
-	"typescript-language-server",
-	"pyright",
+    -- LSP
+    "lua-language-server",
+    "json-lsp",
+    "bash-language-server",
+    "html-lsp",
+    "emmet-ls",
+    "css-lsp",
+    "typescript-language-server",
+    "pyright",
     "jdtls",
 
-	-- Formatters
-	"stylua",
-	"black",
-	"shfmt",
-	"prettier",
+    -- Formatters
+    "stylua",
+    "black",
+    "shfmt",
+    "prettier",
 }
