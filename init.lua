@@ -16,6 +16,7 @@ vim.pack.add({
     { src = "https://github.com/lewis6991/gitsigns.nvim" },
     { src = "https://github.com/christoomey/vim-tmux-navigator" },
     { src = 'https://github.com/nvim-mini/mini.nvim',              version = 'stable' },
+    { src = "https://github.com/OXY2DEV/markview.nvim" },
 })
 
 -- Set default theme
@@ -29,6 +30,7 @@ require("plugins.mason")
 require("plugins.conform")
 require("plugins.gitsigns")
 require("plugins.mini")
+require("plugins.markview")
 
 require("lsp")
 require("options")
