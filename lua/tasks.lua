@@ -3,15 +3,40 @@ local config = {
 
     languages = {
         -- Interpreted languages
-        python = { cmd = "python {file}" },
-        lua = { cmd = "lua {file}" },
-        javascript = { cmd = "node {file}" },
-        sh = { cmd = "bash {file}" },
-        bash = { cmd = "bash {file}" },
+        python = {
+            cmd = "python {file}",
+        },
+        lua = {
+            cmd = "lua {file}",
+        },
+        javascript = {
+            cmd = "node {file}",
+        },
+        sh = {
+            cmd = "bash {file}",
+        },
+        bash = {
+            cmd = "bash {file}",
+        },
 
         -- Compiled languages
-        c = { cmd = "gcc {file} -o {output}", compile = true },
-        cpp = { cmd = "g++ {file} -o {output}", compile = true },
+        c = {
+            cmd = "gcc {file} -o {output}",
+            compile = true,
+        },
+        cpp = {
+            cmd = "g++ {file} -o {output}",
+            compile = true,
+        },
+    },
+
+    -- Keymaps disabled in runner buffer
+    runner = {
+        disabled_keymaps = {
+            { mode = "n", lhs = "<Tab>" },
+            { mode = "n", lhs = "<S-Tab>" },
+            { mode = "n", lhs = "<leader>bd" },
+        },
     },
 }
 
@@ -61,6 +86,15 @@ local function valid_win(win)
     return win and api.nvim_win_is_valid(win)
 end
 
+local function disable_runner_keymaps(buf)
+    for _, mapping in ipairs(config.runner.disabled_keymaps) do
+        vim.keymap.set(mapping.mode, mapping.lhs, "<Nop>", {
+            buffer = buf,
+            silent = true,
+        })
+    end
+end
+
 -- Source file
 local function get_source()
     local buf = api.nvim_get_current_buf()
@@ -106,12 +140,13 @@ local function open_runner()
         runner.win = api.nvim_get_current_win()
     end
 
-    -- Replace the previous terminal buffer
     local old_buf = runner.buf
     local buf = api.nvim_create_buf(false, true)
 
     runner.buf = buf
     api.nvim_win_set_buf(runner.win, buf)
+
+    disable_runner_keymaps(buf)
 
     if valid_buf(old_buf) then
         pcall(api.nvim_buf_delete, old_buf, { force = true })
