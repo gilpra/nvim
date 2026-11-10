@@ -12,6 +12,7 @@ vim.pack.add({
     { src = "https://github.com/saghen/blink.cmp",                 version = "v1" },
     { src = "https://github.com/neovim/nvim-lspconfig" },
     { src = "https://github.com/williamboman/mason.nvim" },
+    { src = "https://github.com/Senal-D-A-Gunaratna/swapson.nvim" },
     { src = "https://github.com/stevearc/conform.nvim" },
     { src = "https://github.com/lewis6991/gitsigns.nvim" },
     { src = "https://github.com/christoomey/vim-tmux-navigator" },
@@ -27,6 +28,7 @@ require("plugins.oil")
 require("plugins.treesitter")
 require("plugins.blink")
 require("plugins.mason")
+require("plugins.swapson")
 require("plugins.conform")
 require("plugins.gitsigns")
 require("plugins.mini")
