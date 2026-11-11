@@ -30,6 +30,13 @@ require("markview").setup({
     },
 })
 
+
+-- Checkbox Toggle
+require("markview.extras.checkboxes").setup({
+    default = "X",
+    remove_style = "disable",
+})
+
 vim.api.nvim_create_autocmd("FileType", {
     group = vim.api.nvim_create_augroup("UserMarkview", { clear = true }),
     pattern = "markdown",
@@ -42,5 +49,19 @@ vim.api.nvim_create_autocmd("FileType", {
         end
 
         map("<leader>ms", "<cmd>Markview splitToggle<CR>", "Markview: toggle splitview")
+
+        -- Toggle checkbox pada baris cursor.
+        vim.keymap.set("n", "<CR>", "<cmd>Checkbox toggle<CR>", {
+            buffer = args.buf,
+            silent = true,
+            desc = "Markview: Toggle checkbox",
+        })
+
+        -- Toggle checkbox pada seluruh baris yang dipilih.
+        vim.keymap.set("x", "<CR>", ":Checkbox toggle<CR>", {
+            buffer = args.buf,
+            silent = true,
+            desc = "Markview: Toggle selected checkboxes",
+        })
     end,
 })
