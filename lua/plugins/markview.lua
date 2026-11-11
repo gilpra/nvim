@@ -2,11 +2,12 @@ local presets = require("markview.presets")
 
 require("markview").setup({
     preview = {
-        enable = false,
+        enabled = true,
         -- mini.icons sudah dipakai di plugins/mini.lua
         icon_provider = "mini",
         filetypes = { "markdown" },
         ignore_buftypes = { "nofile" },
+        modes = { "n", "no", "c", "i" },
         debounce = 100,
         max_buf_lines = 1500,
     },
