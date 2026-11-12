@@ -21,7 +21,7 @@ local function render()
 
     return table.concat({
         "%#" .. m[2] .. "# " .. m[1] .. " %#StatusLine#",
-        branch and branch ~= "" and " │ " .. branch or "",
+        branch and branch ~= "" and "  " .. branch or "",
         E and " │ %#DiagnosticError#E:" .. E .. "%#StatusLine#" or "",
         W and " │ %#DiagnosticWarn#W:" .. W .. "%#StatusLine#" or "",
         " │ %f%m%r",
