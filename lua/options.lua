@@ -39,6 +39,7 @@ o.undofile = true
 o.swapfile = false
 o.backup = false
 o.confirm = true
+o.autoread = true
 
 -- Clipboard
 o.clipboard = "unnamedplus"

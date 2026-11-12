@@ -73,3 +73,13 @@ autocmd("FileType", {
         vim.opt_local.formatoptions:remove({ "c", "r", "o" })
     end,
 })
+
+-- Reload buffers
+vim.api.nvim_create_autocmd("User", {
+    pattern = { "NeogitBranchCheckout" },
+    callback = function()
+        vim.schedule(function()
+            vim.cmd("checktime")
+        end)
+    end,
+})
