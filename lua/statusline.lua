@@ -1,5 +1,3 @@
-local M = {}
-
 local modes = {
     n = { "NORMAL", "StatusLineNormal" },
     i = { "INSERT", "StatusLineInsert" },
@@ -11,68 +9,27 @@ local modes = {
     t = { "TERMINAL", "StatusLineCommand" },
 }
 
-function M.mode()
-    local mode = modes[vim.fn.mode()] or modes.n
-
-    return string.format("%%#%s# %s %%#StatusLine#", mode[2], mode[1])
-end
-
-function M.branch()
-    local branch = vim.b.gitsigns_head
-
-    if branch and branch ~= "" then
-        return " │ " .. branch
-    end
-
-    return ""
-end
-
-function M.diagnostics()
-    local severity = vim.diagnostic.severity
-    local result = {}
-
-    local errors = #vim.diagnostic.get(0, {
-        severity = severity.ERROR,
-    })
-
-    local warnings = #vim.diagnostic.get(0, {
-        severity = severity.WARN,
-    })
-
-    if errors > 0 then
-        table.insert(result, "%#DiagnosticError#E:" .. errors)
-    end
-
-    if warnings > 0 then
-        table.insert(result, "%#DiagnosticWarn#W:" .. warnings)
-    end
-
-    if #result == 0 then
-        return ""
-    end
-
-    return " │ " .. table.concat(result, " ")
-end
-
-function M.statusline()
+local function render()
     if vim.bo.filetype == "oil" then
-        return ""
+        return " "
     end
+
+    local m = modes[vim.fn.mode()] or modes.n
+    local branch = vim.b.gitsigns_head
+    local d = vim.diagnostic.count(0)
+    local E, W = d[vim.diagnostic.severity.ERROR], d[vim.diagnostic.severity.WARN]
 
     return table.concat({
-        M.mode(),
-        M.branch(),
-        M.diagnostics(),
+        "%#" .. m[2] .. "# " .. m[1] .. " %#StatusLine#",
+        branch and branch ~= "" and " │ " .. branch or "",
+        E and " │ %#DiagnosticError#E:" .. E .. "%#StatusLine#" or "",
+        W and " │ %#DiagnosticWarn#W:" .. W .. "%#StatusLine#" or "",
         " │ %f%m%r",
         "%=",
-        "%{&fileformat}",
-        " │ %{&filetype}",
-        " │ %l:%c ",
+        "%{&fileformat} │ %{&filetype} │ %l:%c ",
     })
 end
 
-function M.setup()
-    vim.opt.statusline = "%!v:lua.require('statusline').statusline()"
-end
+_G.StatuslineRender = render
 
-return M
+vim.opt.statusline = "%!v:lua.StatuslineRender()"
