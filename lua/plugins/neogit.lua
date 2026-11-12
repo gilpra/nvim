@@ -18,15 +18,7 @@ neogit.setup({
             ["zz"] = "Submit",
             ["zq"] = "Abort",
         },
-        commit_editor_I = {
-            ["zz"] = "Submit",
-            ["zq"] = "Abort",
-        },
         rebase_editor = {
-            ["zz"] = "Submit",
-            ["zq"] = "Abort",
-        },
-        rebase_editor_I = {
             ["zz"] = "Submit",
             ["zq"] = "Abort",
         },
