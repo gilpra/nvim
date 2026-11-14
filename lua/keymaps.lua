@@ -24,6 +24,9 @@ map("n", "<leader>bd", "<cmd>bdelete<CR>", { desc = "Delete buffer" })
 -- Zoom
 map("n", "<leader>z", "<cmd>Zoom<CR>", { desc = "Toggle zoom buffer" })
 
+-- Completion
+map("i", "<C-f>", "<C-x><C-f>", { desc = "Complete file path" })
+
 -- Selection
 map("v", "*", [[y/\V<C-R>=escape(@", '\')<CR><CR>]], { silent = true })
 map("n", "<leader>nh", "<cmd>nohlsearch<CR>", { desc = "Clear search highlight" })
