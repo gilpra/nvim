@@ -52,7 +52,7 @@ local function setup_keymaps()
 	})
 end
 
-local capabilities = require("blink.cmp").get_lsp_capabilities()
+local capabilities = require("mini.completion").get_lsp_capabilities()
 local servers = require("configs.servers")
 
 setup_diagnostics()

@@ -16,7 +16,7 @@ return {
 					},
 				},
 				diagnostics = {
-					globals = { "vim" },
+					globals = { "vim", "MiniSnippets" },
 				},
 				telemetry = {
 					enable = false,

@@ -32,7 +32,12 @@ o.inccommand = "split"
 -- UX
 o.mouse = "a"
 o.timeoutlen = 1000
-o.completeopt = "menu,menuone,noselect"
+o.completeopt = "menuone,noselect"
+o.pumheight = 8
+o.complete = ".,w,b"
+o.wildmenu = true
+o.wildmode = "longest:full,full"
+o.wildoptions = "pum"
 
 -- Files
 o.undofile = true
