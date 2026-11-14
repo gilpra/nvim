@@ -45,5 +45,5 @@ o.autoread = true
 o.clipboard = "unnamedplus"
 
 o.fillchars = {
-    eob = " ",
+	eob = " ",
 }

@@ -1,41 +1,41 @@
 local neogit = require("neogit")
 neogit.setup({
-    process_spinner = true,
+	process_spinner = true,
 
-    commit_editor = {
-        staged_diff_split_kind = "vsplit",
-    },
+	commit_editor = {
+		staged_diff_split_kind = "vsplit",
+	},
 
-    integrations = {
-        mini_pick = true,
-        diffview = true,
-    },
+	integrations = {
+		mini_pick = true,
+		diffview = true,
+	},
 
-    diff_viewer = "diffview",
+	diff_viewer = "diffview",
 
-    mappings = {
-        commit_editor = {
-            ["zz"] = "Submit",
-            ["zq"] = "Abort",
-        },
-        rebase_editor = {
-            ["zz"] = "Submit",
-            ["zq"] = "Abort",
-        },
-    },
+	mappings = {
+		commit_editor = {
+			["zz"] = "Submit",
+			["zq"] = "Abort",
+		},
+		rebase_editor = {
+			["zz"] = "Submit",
+			["zq"] = "Abort",
+		},
+	},
 })
 
 local function map(lhs, popup, desc)
-    vim.keymap.set("n", lhs, function()
-        if popup then
-            neogit.open({ popup })
-        else
-            neogit.open()
-        end
-    end, {
-        desc = desc,
-        silent = true,
-    })
+	vim.keymap.set("n", lhs, function()
+		if popup then
+			neogit.open({ popup })
+		else
+			neogit.open()
+		end
+	end, {
+		desc = desc,
+		silent = true,
+	})
 end
 
 map("<leader>gg", nil, "Git: open Neogit")
