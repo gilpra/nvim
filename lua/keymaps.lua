@@ -10,6 +10,7 @@ map("n", "<leader>c", "<cmd>Compile<CR>", { desc = "Enter Compile mode" })
 
 -- jk di insert mode = tekan Escape (keluar ke normal mode)
 map("i", "jk", "<Esc>", { desc = "Exit insert mode" })
+map("t", "jk", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
 
 -- Navigasi
 map({ "n", "v" }, "H", "^", { desc = "Jump to beginning of line" })
@@ -36,6 +37,9 @@ map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move line up" })
 -- Komentar
 map("n", "<leader>/", "gcc", { remap = true, desc = "Toggle line comment" })
 map("v", "<leader>/", "gc", { remap = true, desc = "Toggle selection comment" })
+
+-- Terminal
+map("n", "<leader>tt", "<cmd>vsplit | terminal<CR>", { desc = "Open terminal in vertical split" })
 
 -- Split Window
 map("n", "<leader>sh", "<cmd>sp<CR>", { desc = "Split: horizontal" })
