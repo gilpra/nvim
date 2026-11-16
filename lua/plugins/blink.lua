@@ -50,6 +50,6 @@ require("blink.cmp").setup({
 	signature = { enabled = true },
 
 	enabled = function()
-		return not vim.tbl_contains({ "markdown", "text", "gitcommit", "oil" }, vim.bo.filetype)
+		return not vim.tbl_contains({ "text", "gitcommit", "oil" }, vim.bo.filetype)
 	end,
 })

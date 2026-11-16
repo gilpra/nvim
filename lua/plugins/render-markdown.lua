@@ -8,11 +8,6 @@ require("render-markdown").setup({
 	file_types = { "markdown" },
 	max_file_size = 10.0,
 
-	-- Anti conceal
-	anti_conceal = {
-		enabled = false,
-	},
-
 	-- Heading
 	heading = {
 		enabled = true,
@@ -30,7 +25,7 @@ require("render-markdown").setup({
 		},
 
 		width = "block",
-		left_pad = 1,
+		left_pad = 0,
 		right_pad = 1,
 
 		border = false,
@@ -101,7 +96,7 @@ require("render-markdown").setup({
 			"◇",
 		},
 		left_pad = 0,
-		right_pad = 1,
+		right_pad = 0,
 	},
 
 	-- Checkbox
@@ -109,7 +104,7 @@ require("render-markdown").setup({
 		enabled = true,
 		bullet = false,
 		left_pad = 0,
-		right_pad = 1,
+		right_pad = 0,
 
 		unchecked = {
 			icon = "󰄱 ",
