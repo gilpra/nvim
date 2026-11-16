@@ -54,18 +54,6 @@ autocmd("TermClose", {
 	end,
 })
 
--- Wrap prose.
-autocmd("FileType", {
-	group = augroup,
-	pattern = {
-		"markdown",
-		"text",
-	},
-	callback = function()
-		vim.opt_local.wrap = true
-	end,
-})
-
 -- Disable automatic comment continuation.
 autocmd("FileType", {
 	group = augroup,
@@ -81,5 +69,30 @@ vim.api.nvim_create_autocmd("User", {
 		vim.schedule(function()
 			vim.cmd("checktime")
 		end)
+	end,
+})
+
+-- Markdown: no wrap in Normal mode, wrap while inserting.
+autocmd("FileType", {
+	group = augroup,
+	pattern = "markdown",
+	callback = function(args)
+		vim.opt_local.wrap = false
+
+		autocmd("InsertEnter", {
+			group = augroup,
+			buffer = args.buf,
+			callback = function()
+				vim.opt_local.wrap = true
+			end,
+		})
+
+		autocmd("InsertLeave", {
+			group = augroup,
+			buffer = args.buf,
+			callback = function()
+				vim.opt_local.wrap = false
+			end,
+		})
 	end,
 })
