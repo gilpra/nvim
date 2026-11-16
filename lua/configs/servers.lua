@@ -46,7 +46,7 @@ return {
 
 	cssls = {},
 
-	ts_ls = {},
+	tsc = {},
 
 	pyright = {
 		settings = {

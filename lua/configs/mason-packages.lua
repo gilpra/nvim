@@ -6,7 +6,7 @@ return {
 	"html-lsp",
 	"emmet-ls",
 	"css-lsp",
-	"typescript-language-server",
+	"tsc",
 	"pyright",
 	"jdtls",
 
