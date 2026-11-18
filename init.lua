@@ -19,8 +19,6 @@ vim.pack.add({
 	{ src = "https://github.com/NeogitOrg/neogit" },
 	{ src = "https://github.com/christoomey/vim-tmux-navigator" },
 	{ src = "https://github.com/nvim-mini/mini.nvim", version = "stable" },
-	{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
-	{ src = "https://github.com/obsidian-nvim/obsidian.nvim", version = vim.version.range("*") },
 })
 
 -- Set default theme
@@ -37,8 +35,6 @@ require("plugins.gitsigns")
 require("plugins.mini")
 require("plugins.diffview")
 require("plugins.neogit")
-require("plugins.render-markdown")
-require("plugins.obsidian")
 
 require("lsp")
 require("options")

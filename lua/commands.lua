@@ -38,17 +38,19 @@ end, {
 -- Clean unused plugins
 command("PackClean", function()
 	local inactive = vim.iter(vim.pack.get())
-		:filter(function(p)
-			return not p.active
+		:filter(function(plugin)
+			return not plugin.active
 		end)
-		:map(function(p)
-			return p.spec.name
+		:map(function(plugin)
+			return plugin.spec.name
 		end)
 		:totable()
 
-	if #inactive > 0 then
-		vim.pack.del(inactive)
+	if #inactive == 0 then
+		return
 	end
+
+	vim.pack.del(inactive)
 end, { desc = "Remove inactive plugins" })
 
 -- Replace visual selection throughout the current file.
