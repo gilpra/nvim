@@ -8,11 +8,19 @@ local function render()
 			name = name ~= "" and name or "[No Name]"
 
 			local highlight = bufnr == current and "%#TabLineSel#" or "%#TabLine#"
-			table.insert(items, highlight .. " " .. name .. " ")
+
+			table.insert(items, highlight .. "%" .. bufnr .. "@v:lua.TablineClick@ " .. name .. " %T")
 		end
 	end
 
 	return table.concat(items, "%#TabLineFill#│") .. "%#TabLineFill#"
+end
+
+-- Handle mouse clicks.
+_G.TablineClick = function(bufnr, _, button)
+	if button == "l" and vim.api.nvim_buf_is_valid(bufnr) then
+		vim.api.nvim_set_current_buf(bufnr)
+	end
 end
 
 _G.TablineRender = render
