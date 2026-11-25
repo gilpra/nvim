@@ -9,7 +9,6 @@ vim.pack.add({
 	{ src = "https://github.com/stevearc/oil.nvim" },
 	{ src = "https://github.com/romus204/tree-sitter-manager.nvim" },
 	{ src = "https://github.com/rafamadriz/friendly-snippets" },
-	{ src = "https://github.com/saghen/blink.cmp", version = "v1" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/williamboman/mason.nvim" },
 	{ src = "https://github.com/Senal-D-A-Gunaratna/swapson.nvim" },
@@ -36,7 +35,6 @@ require("tabline")
 -- Configure plugins
 require("plugins.oil")
 require("plugins.treesitter")
-require("plugins.blink")
 require("plugins.mason")
 require("plugins.swapson")
 require("plugins.conform")
@@ -44,12 +42,3 @@ require("plugins.gitsigns")
 require("plugins.mini")
 require("plugins.diffview")
 require("plugins.neogit")
-
-require("lsp")
-require("options")
-require("autocmds")
-require("commands")
-require("keymaps")
-require("tasks")
-require("statusline")
-require("tabline")

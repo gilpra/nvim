@@ -29,10 +29,14 @@ o.ignorecase = true
 o.smartcase = true
 o.inccommand = "split"
 
+-- Completion
+o.completeopt = "menuone,noinsert,fuzzy"
+o.pumborder = "single"
+o.pumheight = 12
+
 -- UX
 o.mouse = "a"
 o.timeoutlen = 1000
-o.completeopt = "menu,menuone,noselect"
 
 -- Files
 o.undofile = true

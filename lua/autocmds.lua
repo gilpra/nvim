@@ -62,6 +62,23 @@ autocmd("FileType", {
 	end,
 })
 
+-- Disable completion in specific filetype
+vim.api.nvim_create_autocmd("FileType", {
+	group = vim.api.nvim_create_augroup("UserMiniCompletionDisable", { clear = true }),
+	pattern = { "markdown", "text", "gitcommit", "oil" },
+	callback = function(args)
+		vim.b[args.buf].minicompletion_disable = true
+	end,
+})
+
+-- LSP completion is enabled when the server attaches.
+vim.api.nvim_create_autocmd("LspAttach", {
+	group = vim.api.nvim_create_augroup("UserMiniCompletion", { clear = true }),
+	callback = function(args)
+		vim.bo[args.buf].omnifunc = "v:lua.MiniCompletion.completefunc_lsp"
+	end,
+})
+
 -- Reload buffers
 vim.api.nvim_create_autocmd("User", {
 	pattern = { "NeogitBranchCheckout" },
@@ -69,30 +86,5 @@ vim.api.nvim_create_autocmd("User", {
 		vim.schedule(function()
 			vim.cmd("checktime")
 		end)
-	end,
-})
-
--- Markdown: no wrap in Normal mode, wrap while inserting.
-autocmd("FileType", {
-	group = augroup,
-	pattern = "markdown",
-	callback = function(args)
-		vim.opt_local.wrap = false
-
-		autocmd("InsertEnter", {
-			group = augroup,
-			buffer = args.buf,
-			callback = function()
-				vim.opt_local.wrap = true
-			end,
-		})
-
-		autocmd("InsertLeave", {
-			group = augroup,
-			buffer = args.buf,
-			callback = function()
-				vim.opt_local.wrap = false
-			end,
-		})
 	end,
 })

@@ -11,6 +11,7 @@ require("mini.surround").setup()
 
 -- Icon
 require("mini.icons").setup()
+require("mini.icons").tweak_lsp_kind()
 
 -- Picker
 require("mini.pick").setup({
@@ -24,7 +25,41 @@ require("mini.snippets").setup({
 	snippets = {
 		require("mini.snippets").gen_loader.from_lang(),
 	},
+	mappings = { expand = "", jump_next = "", jump_prev = "" },
 })
+require("mini.snippets").start_lsp_server({ match = false })
+
+-- Completion
+require("mini.completion").setup({
+	lsp_completion = {
+		source_func = "omnifunc",
+		auto_setup = false,
+		process_items = function(items, base)
+			local processed = MiniCompletion.default_process_items(items, base, {
+				filtersort = "fuzzy",
+				kind_priority = { Text = -1 },
+			})
+			for _, item in ipairs(processed) do
+				item.labelDetails = nil
+			end
+			return processed
+		end,
+	},
+})
+
+-- Keymap
+local map_multistep = require("mini.keymap").map_multistep
+
+map_multistep("i", "<Tab>", {
+	"minisnippets_next",
+	"pmenu_next",
+})
+map_multistep("i", "<S-Tab>", {
+	"minisnippets_prev",
+	"pmenu_prev",
+})
+map_multistep("i", "<C-j>", { "pmenu_next" })
+map_multistep("i", "<C-k>", { "pmenu_prev" })
 
 -- ==================
 -- KEYMAPS

@@ -7,8 +7,6 @@ map({ "i", "x", "s" }, "<C-s>", "<cmd>w<CR><Esc>", { desc = "Save file" })
 -- Mode Switching
 map("n", ";", ":", { desc = "Enter command mode" })
 map("n", "<leader>c", "<cmd>Compile<CR>", { desc = "Enter Compile mode" })
-
--- jk di insert mode = tekan Escape (keluar ke normal mode)
 map("i", "jk", "<Esc>", { desc = "Exit insert mode" })
 map("t", "jk", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
 
@@ -52,4 +50,6 @@ map("n", "<C-S-h>", "<cmd>vertical resize -2<CR>", { desc = "Pane: decrease widt
 map("n", "<C-S-l>", "<cmd>vertical resize +2<CR>", { desc = "Pane: increase width" })
 map("n", "<C-S-k>", "<cmd>resize +2<CR>", { desc = "Pane: increase height" })
 map("n", "<C-S-j>", "<cmd>resize -2<CR>", { desc = "Pane: decrease height" })
-map("n", "<leader>z", "<cmd>Zoom<CR>", { desc = "Toggle window zoom" })
+
+-- Path completion
+map("i", "<C-p>", "<C-x><C-f>", { desc = "Complete file path" })
