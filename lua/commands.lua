@@ -58,41 +58,30 @@ command("ReplaceSelection", function()
 	local bufnr = vim.api.nvim_get_current_buf()
 	local mode = vim.fn.mode()
 
-	-- Ensure the command is called in Visual mode.
-	if mode ~= "v" and mode ~= "V" and mode ~= "\22" then
+	-- Ensure Visual mode is active.
+	if not ({ v = true, V = true, ["\22"] = true })[mode] then
 		vim.notify("Select text in Visual mode first", vim.log.levels.WARN)
 		return
 	end
 
-	-- Get the selected text.
-	local region = vim.fn.getregion(vim.fn.getpos("v"), vim.fn.getpos("."), { type = mode })
-	local selected = table.concat(region, "\n")
+	local selected = table.concat(vim.fn.getregion(vim.fn.getpos("v"), vim.fn.getpos("."), { type = mode }), "\n")
 
 	if selected == "" then
 		return
-	end
-
-	-- Only support selections within a single line.
-	if selected:find("\n", 1, true) then
+	elseif selected:find("\n", 1, true) then
 		vim.notify("Select text within a single line", vim.log.levels.WARN)
 		return
 	end
 
 	vim.ui.input({ prompt = "Replace with: " }, function(replacement)
-		if replacement == nil then
+		if replacement == nil or not vim.api.nvim_buf_is_valid(bufnr) then
 			return
 		end
-
-		if not vim.api.nvim_buf_is_valid(bufnr) then
-			return
-		end
-
-		-- Escape special characters for literal substitution.
-		local pattern = vim.fn.escape(selected, [[\/]])
-		local text = vim.fn.escape(replacement, [[\/&~|]])
 
 		vim.api.nvim_buf_call(bufnr, function()
-			vim.cmd("%s/\\C\\V" .. pattern .. "/" .. text .. "/g")
+			vim.cmd(
+				"%s/\\C\\V" .. vim.fn.escape(selected, [[\/]]) .. "/" .. vim.fn.escape(replacement, [[\/&~|]]) .. "/g"
+			)
 		end)
 	end)
 end, {

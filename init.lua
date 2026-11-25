@@ -24,6 +24,15 @@ vim.pack.add({
 -- Set default theme
 vim.cmd.colorscheme("yoruakari")
 
+require("lsp")
+require("options")
+require("autocmds")
+require("commands")
+require("keymaps")
+require("tasks")
+require("statusline")
+require("tabline")
+
 -- Configure plugins
 require("plugins.oil")
 require("plugins.treesitter")

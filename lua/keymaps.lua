@@ -34,7 +34,7 @@ map("x", "<leader>r", "<Cmd>ReplaceSelection<CR>", { desc = "Replace selection" 
 map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move line down" })
 map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move line up" })
 
--- Komentar
+-- Comment
 map("n", "<leader>/", "gcc", { remap = true, desc = "Toggle line comment" })
 map("v", "<leader>/", "gc", { remap = true, desc = "Toggle selection comment" })
 
