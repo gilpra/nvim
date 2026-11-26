@@ -53,6 +53,11 @@ command("PackClean", function()
 	vim.pack.del(inactive)
 end, { desc = "Remove inactive plugins" })
 
+-- Update all plugin
+command("PackUpdate", function()
+	vim.pack.update(nil, { force = true })
+end, { desc = "Update all plugin" })
+
 -- Replace visual selection throughout the current file.
 command("ReplaceSelection", function()
 	local bufnr = vim.api.nvim_get_current_buf()
