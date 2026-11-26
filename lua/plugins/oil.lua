@@ -1,25 +1,11 @@
 require("oil").setup({
 	columns = {
 		"mtime",
+		"size",
 		"icon",
 	},
-	buf_options = {
-		buflisted = false,
-		bufhidden = "hide",
-	},
-	win_options = {
-		wrap = false,
-		signcolumn = "no",
-		cursorcolumn = false,
-		foldcolumn = "0",
-		spell = false,
-		list = false,
-		conceallevel = 3,
-		concealcursor = "nvic",
-	},
 	delete_to_trash = true,
-	skip_confirm_for_simple_edits = false,
-	prompt_save_on_select_new_entry = true,
+	skip_confirm_for_simple_edits = true,
 	keymaps = {
 		["g?"] = "actions.show_help",
 		["<CR>"] = "actions.select",
@@ -38,20 +24,10 @@ require("oil").setup({
 		["."] = "actions.toggle_hidden",
 		["g\\"] = "actions.toggle_trash",
 	},
-	use_default_keymaps = true,
 	view_options = {
-		show_hidden = false,
-		is_hidden_file = function(name, _)
-			return vim.startswith(name, ".")
-		end,
 		is_always_hidden = function(name, _)
 			return name == ".git"
 		end,
-		natural_order = true,
-		sort = {
-			{ "type", "asc" },
-			{ "name", "asc" },
-		},
 	},
 })
 

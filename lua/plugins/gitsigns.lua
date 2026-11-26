@@ -25,7 +25,7 @@ require("gitsigns").setup({
 			else
 				gs.next_hunk()
 			end
-		end, "Git: hunk berikutnya")
+		end, "Git: hunk next")
 
 		map("n", "[h", function()
 			if vim.wo.diff then
@@ -33,7 +33,7 @@ require("gitsigns").setup({
 			else
 				gs.prev_hunk()
 			end
-		end, "Git: hunk sebelumnya")
+		end, "Git: hunk prev")
 
 		map("n", "<leader>hs", gs.stage_hunk, "Git: stage hunk")
 		map("n", "<leader>hr", gs.reset_hunk, "Git: reset hunk")

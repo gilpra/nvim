@@ -1,7 +1,7 @@
 {
   "plugins": {
     "blink.cmp": {
-      "rev": "78336bc89ee5365633bcf754d93df01678b5c08f",
+      "rev": "e0d51adba95174760e2e1454fe39543d96194118",
       "src": "https://github.com/saghen/blink.cmp",
       "version": "'v1'"
     },
@@ -14,11 +14,11 @@
       "src": "https://github.com/sindrets/diffview.nvim"
     },
     "friendly-snippets": {
-      "rev": "b4d01b0fdf3c9a549961c2f9ffe8dc09be166219",
+      "rev": "7a1c9f7897a4eb078b157a04c7af81e5869215b1",
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "gitsigns.nvim": {
-      "rev": "fd780920613e541cbdfac41bf711583ed49f9249",
+      "rev": "166c03131e6a3528f692dd89f37668d991f17baa",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "mason.nvim": {
@@ -31,11 +31,11 @@
       "version": "'stable'"
     },
     "neogit": {
-      "rev": "ba2f33b64b996ff5530c4c45a3c432fb63aaa95b",
+      "rev": "0468adaa4af22ede35c0df6bdd81e93a9c217733",
       "src": "https://github.com/NeogitOrg/neogit"
     },
     "nvim-lspconfig": {
-      "rev": "45a3a444b710511c39abca3b60bb6e23a21e3de5",
+      "rev": "76f4cafc49677a34dc8ad8142b773d78ab4a041e",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "oil.nvim": {
@@ -47,11 +47,11 @@
       "src": "https://github.com/Senal-D-A-Gunaratna/swapson.nvim"
     },
     "tree-sitter-manager.nvim": {
-      "rev": "06c90a3af8eb471f4a4ff979d681312284a8583a",
+      "rev": "81d83444d3ad56f613b70510a54313b44963a868",
       "src": "https://github.com/romus204/tree-sitter-manager.nvim"
     },
     "vim-tmux-navigator": {
-      "rev": "e41c431a0c7b7388ae7ba341f01a0d217eb3a432",
+      "rev": "fb217852efb294a50a10507fc8d53709696b6e23",
       "src": "https://github.com/christoomey/vim-tmux-navigator"
     },
     "yoruakari.nvim": {

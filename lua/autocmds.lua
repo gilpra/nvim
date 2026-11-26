@@ -63,8 +63,8 @@ autocmd("FileType", {
 })
 
 -- Disable completion in specific filetype
-vim.api.nvim_create_autocmd("FileType", {
-	group = vim.api.nvim_create_augroup("UserMiniCompletionDisable", { clear = true }),
+autocmd("FileType", {
+	group = augroup,
 	pattern = { "markdown", "text", "gitcommit", "oil" },
 	callback = function(args)
 		vim.b[args.buf].minicompletion_disable = true
@@ -72,15 +72,16 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- LSP completion is enabled when the server attaches.
-vim.api.nvim_create_autocmd("LspAttach", {
-	group = vim.api.nvim_create_augroup("UserMiniCompletion", { clear = true }),
+autocmd("LspAttach", {
+	group = augroup,
 	callback = function(args)
 		vim.bo[args.buf].omnifunc = "v:lua.MiniCompletion.completefunc_lsp"
 	end,
 })
 
 -- Reload buffers
-vim.api.nvim_create_autocmd("User", {
+autocmd("User", {
+	group = augroup,
 	pattern = { "NeogitBranchCheckout" },
 	callback = function()
 		vim.schedule(function()

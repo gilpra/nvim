@@ -1,5 +1,3 @@
-local map = vim.keymap.set
-
 -- Auto pairs
 require("mini.pairs").setup()
 
@@ -49,6 +47,7 @@ require("mini.completion").setup({
 
 -- Keymap
 local map_multistep = require("mini.keymap").map_multistep
+local map = vim.keymap.set
 
 map_multistep("i", "<Tab>", {
 	"minisnippets_next",
@@ -60,10 +59,6 @@ map_multistep("i", "<S-Tab>", {
 })
 map_multistep("i", "<C-j>", { "pmenu_next" })
 map_multistep("i", "<C-k>", { "pmenu_prev" })
-
--- ==================
--- KEYMAPS
--- ==================
 
 -- Find files
 map("n", "<leader>ff", function()

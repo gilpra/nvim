@@ -28,7 +28,7 @@ require("options")
 require("autocmds")
 require("commands")
 require("keymaps")
-require("tasks")
+require("runners")
 require("statusline")
 require("tabline")
 
