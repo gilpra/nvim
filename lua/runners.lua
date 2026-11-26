@@ -2,16 +2,13 @@ local config = {
 	height = 15,
 
 	languages = {
-		-- Interpreted languages
 		python = { cmd = "python {file}" },
 		lua = { cmd = "lua {file}" },
 		javascript = { cmd = "node {file}" },
 		sh = { cmd = "bash {file}" },
 		bash = { cmd = "bash {file}" },
-
-		-- Compiled languages
-		c = { cmd = "gcc {file} -o {output}", compile = true },
-		cpp = { cmd = "g++ {file} -o {output}", compile = true },
+		c = { cmd = "gcc {file} -o {output} && ./{output}" },
+		cpp = { cmd = "g++ {file} -o {output} && ./{output}" },
 	},
 
 	-- Keymaps disabled in runner buffer
@@ -36,25 +33,8 @@ local levels = vim.log.levels
 
 -- Scripts
 local RUN_SCRIPT = [[
-printf '$%s\n' "$1"
+printf '❯ %s\n\n' "$1"
 exec bash -c "$1"
-]]
-
-local COMPILE_SCRIPT = [[
-printf '$%s\n' "$1"
-
-start=${EPOCHREALTIME/./}
-bash -c "$1"
-status=$?
-elapsed=$(( (${EPOCHREALTIME/./} - start + 5000) / 10000 ))
-
-if (( status == 0 )); then
-    printf 'Compilation finished in %d,%02ds\n\n' $((elapsed / 100)) $((elapsed % 100))
-    exec "./$2"
-fi
-
-printf 'Compilation failed in %d,%02ds\n\n' $((elapsed / 100)) $((elapsed % 100))
-exit "$status"
 ]]
 
 -- Utilities
@@ -139,15 +119,18 @@ local function open_runner()
 	return buf
 end
 
-local function start_runner(script, args, cwd)
+local function start_runner(command, cwd)
 	stop_runner()
 
 	local buf = open_runner()
-	local cmd = { "bash", "-c", script, "runner" }
 
-	vim.list_extend(cmd, args)
-
-	local ok, job = pcall(fn.jobstart, cmd, {
+	local ok, job = pcall(fn.jobstart, {
+		"bash",
+		"-c",
+		RUN_SCRIPT,
+		"runner",
+		command,
+	}, {
 		term = true,
 		cwd = cwd,
 
@@ -183,7 +166,7 @@ local function execute_language(file, language, cwd)
 	})
 
 	vim.ui.input({
-		prompt = language.compile and "Compile command: " or "Run command: ",
+		prompt = "Run command: ",
 		default = command,
 	}, function(input)
 		input = input and vim.trim(input)
@@ -192,11 +175,7 @@ local function execute_language(file, language, cwd)
 			return
 		end
 
-		if language.compile then
-			start_runner(COMPILE_SCRIPT, { input, output }, cwd)
-		else
-			start_runner(RUN_SCRIPT, { input }, cwd)
-		end
+		start_runner(input, cwd)
 	end)
 end
 
